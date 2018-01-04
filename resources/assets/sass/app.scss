@@ -1,0 +1,242 @@
+:root {
+  --font: 'Lato', sans-serif;
+  --font-size: 15px;
+  --line-height: 26px;
+  --font-weight: 100;
+  --font-color: #ffffff;
+  --bg-color: #d0343a;
+  --link-color: #fffcda;
+  --border-color: rgba(255,255,255,0.5);
+}
+
+body {
+    font-family: var(--font);
+    font-size: var(--font-size);
+    font-weight: var(--font-weight);
+    line-height: var(--line-height);
+    background-color: var(--bg-color);
+    color: var(--font-color);
+}
+
+html, body {
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+
+h1, h2, h3 {
+    font-weight: var(--font-weight);
+}
+
+h1 {
+    font-size: 25px;
+}
+
+.italic {
+    font-style: italic;
+}
+
+.bold {
+    font-weight: 400;
+}
+
+.center {
+    text-align: center;
+}
+
+.flexbox {
+    display: flex;
+}
+
+label {
+    cursor: pointer;
+}
+
+div.app {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    width: calc(100vw - 42px);
+    margin: 0;
+    padding: 10px;
+    flex-direction: column;
+    min-height: calc(100vh - 50px);
+}
+
+div.content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+}
+
+
+div.logo {
+    text-align: center;
+    padding: 10px;
+}
+
+img.logo {
+    max-width: 300px;
+}
+
+
+.auth {
+    height: 0;
+    overflow: visible;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+button {
+    background-color: rgba(255,255,255,0.1);
+    border: 0.5px solid #ffffff;
+    padding: 5px 20px;
+    margin: 0px;
+    font-family: var(--font);
+    font-size: var(--font-size);
+    font-weight: 400;
+    color: var(--font-color) !important;
+    white-space: nowrap;
+    display: inline-block;
+    appearance: none;
+    cursor: pointer;
+    outline: 0;
+    border-radius: 5px;
+}
+
+input {
+    font-family: var(--font);
+    width: 100%;
+    background-color: transparent;
+    appearance: none;
+    border: 0;
+    border-bottom: 0.5px solid #ffffff;
+    outline: none;
+    color: var(--font-color);
+    padding: 5px;
+    font-size: var(--font-size);
+    font-weight: 400;
+}
+
+input::placeholder {
+    font-style: italic;
+    color: rgba(255,255,255,0.8);
+    text-align: center;
+}
+
+input[type=checkbox]:checked {
+    background-color: rgba(255,255,255,1);
+    border-color: var(--link-color);
+}
+
+input[type=checkbox] {
+    z-index: 0;
+    position: relative;
+    padding: 0;
+    margin: 0 5px 0 0;
+    appearance: none;
+    height: 22px !important;
+    width: 22px !important;
+    line-height: normal;
+    top: 3px;
+    border: 0.5px solid var(--font-color);
+    background-color: rgba(255,255,255,0.25);
+    border-radius: 3px;
+}
+
+.modal {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    background-color: var(--bg-color);
+}
+
+.login-container {
+    display: grid;
+    height: 100vh;
+    grid-template-columns: minmax(200px, 300px);
+    justify-content: center;
+    align-content: center;
+}
+
+div.input-block {
+}
+
+div.label {
+    flex: 1;
+}
+
+div.input {
+    flex: 2;
+}
+
+div.registration-form div.input-block {  
+    margin: 30px auto;
+}
+
+div.form-header {
+    margin: 30px auto;
+}
+
+div.event-info {
+    padding-left: 10px;
+}
+
+/* TRANSITIONS */
+
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity 250ms ease-out;
+}
+
+.fade-enter,
+.fade-leave-active {
+    opacity: 0;
+}
+
+
+/* EXPANDER */
+
+.expander-leave-active {
+    transition: max-height 1250ms ease-out;
+    overflow: hidden;
+}
+
+.expander-enter-active {
+    transition: max-height 1250ms ease-in;
+    overflow: hidden;
+}
+
+.expander-enter, .expander-leave-to {
+    max-height: 0;
+}
+
+.expander-enter-to, .expander-leave {
+    max-height: calc(100vh - 22px);
+}
+
+
+/*  AUTH */
+
+.auth-show {
+    position: fixed;
+    top: 0;
+    right: 0;
+    padding: 5px;
+    font-size: 12px;
+    color: var(--link-color);
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 250ms ease-out;
+}
+
+.auth-show.hover {
+    opacity: 1;
+}
