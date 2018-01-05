@@ -26,7 +26,7 @@ class EventsController extends Controller
         $email = request()->input('email');
         $events = Event::whereIn('id', request()->input('events'))->get();
 
-        Mail::to('mike.minckler@brentwood.ca')->send(new RegisterForEvents($name, $email, $events));
+        //Mail::to('mike.minckler@brentwood.ca')->send(new RegisterForEvents($name, $email, $events));
 
         return response()->json(['success' => 'registered']);
     

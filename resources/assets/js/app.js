@@ -19,7 +19,11 @@ Vue.prototype.$http = axios;
 
 Vue.component('auth', require('./components/Auth.vue'));
 Vue.component('registration', require('./components/Registration.vue'));
-Vue.component('page-content', require('./components/PageContent.vue'));
+Vue.component('youtube-video', require('./components/YoutubeVideo.vue'));
+
+
+
+//Vue.component('page-content', require('./components/PageContent.vue'));
 
 
 const store = new Vuex.Store({
@@ -29,7 +33,8 @@ const store = new Vuex.Store({
         user: {
             id: ''
         },
-        registered: false
+        registered: true,
+        youtubeReady: false
     },
 
     mutations: {
@@ -39,6 +44,9 @@ const store = new Vuex.Store({
         },
         setRegistered (state, registered) {
             state.registered = registered;
+        },
+        setYoutubeReady (state, ready) {
+            state.youtubeReady = ready;
         }
     
     },
@@ -50,6 +58,9 @@ const store = new Vuex.Store({
         },
         setRegistered({ commit, state }, registered) {
             commit('setRegistered', registered);
+        },
+        setYoutubeReady({ commit, state }, ready) {
+            commit('setYoutubeReady', ready);
         }
     
     }
@@ -68,9 +79,19 @@ const app = new Vue({
 
     mounted() {
 
+        var tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        window.onYouTubeIframeAPIReady = function() {
+            app.$store.dispatch('setYoutubeReady', true);
+        }
+
     },
 
     methods: {
+
     
     }
 });
