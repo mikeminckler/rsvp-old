@@ -1,8 +1,10 @@
 <template>
 
-    <div class="youtube" :class="status">
-        <div id="player"></div>
-    </div>
+    <transition name="youtube-transition">
+        <div class="youtube-player" v-show="show">
+            <div id="player"></div>
+        </div>
+    </transition>
 
 </template>
 
@@ -15,7 +17,7 @@
         data: function() {
             return {
                 player: {},
-                status: ''
+                show: false
             }
         },
 
@@ -61,7 +63,8 @@
                         iv_load_policy: 3,
                         fs: 0,
                         enablejsapi: 1,
-                        disablekb: 1
+                        disablekb: 1,
+                        //start: 29
                     }
                 });
             
@@ -70,9 +73,9 @@
             onPlayerReady: function() {
                 this.player.getIframe().style.cssText = 'width: 100vw; height: 56.25vw;';
                 this.player.setVolume(20);
-                    this.player.getIframe().style.opacity = '1';
+                this.player.getIframe().style.opacity = '1';
 
-                this.status = 'loaded';
+                this.show = true;
 
                 setTimeout( () => {
                     this.player.playVideo();
@@ -84,7 +87,7 @@
 
                 if (event.data == YT.PlayerState.ENDED) {
                     this.player.getIframe().style.opacity = '0';
-                    this.status = 'ended';
+                    this.show = false;
                 }
 
             }

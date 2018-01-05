@@ -2,7 +2,7 @@
 
     <div class="registration-form">
 
-        <transition name="initial" appear>
+        <transition name="expander" appear>
             <div class="input-container">
                 <div class="logo">
                     <img src="images/bcs_logo_white.png" class="logo"/>
@@ -10,24 +10,24 @@
             </div>
         </transition>
 
-        <transition name="initial" appear>
-            <div class="input-container">
-                <div class="">
+        <transition name="expander" appear>
+            <div class="input-container" v-if="!complete">
+                <div class="center">
                     <h1>Information Session Registration</h1>
                 </div>
             </div>
         </transition>
 
-        <transition name="initial" appear>
-            <div class="input-container">
+        <transition name="expander" appear>
+            <div class="input-container" v-if="!complete">
                 <div class="input-block">
                     <input type="text" v-model="name" placeholder="Name" class="center" />
                 </div>
             </div>
         </transition>
 
-        <transition name="initial" appear>
-            <div class="input-container">
+        <transition name="expander" appear>
+            <div class="input-container" v-if="!complete">
                 <div class="input-block">
                     <input type="text" v-model="email" placeholder="Email" class="center" />
                 </div>
@@ -36,7 +36,7 @@
 
 
         <transition name="expander">
-            <div class="input-container" v-if="name.length && validEmail">
+            <div class="input-container" v-if="name.length && validEmail && !complete">
                 <div class="input-block">
                     <p class="italic center">Which event are you planning on attending?</p>
                 </div>
@@ -44,9 +44,9 @@
         </transition>
 
         <transition name="expander">
-            <div class="input-container" v-if="name.length && validEmail">
+            <div class="input-container" v-if="name.length && validEmail && !complete">
 
-                <transition-group name="expander">
+                <transition-group name="list">
 
                     <div class="flexbox" 
                         v-for="(event, index) in events"
@@ -56,7 +56,7 @@
                             <input type="checkbox" 
                                 v-model="selectedEvents"
                                 :id="'event_' + event.id" 
-                                :value="event.id" 
+                                :value="event" 
                              />
                         </div>
                         <div class="event-info">
@@ -71,11 +71,43 @@
             </div>
         </transition>
 
-        <transition name="button">
-            <div v-if="valid" class="input-container">
+        <transition name="expander">
+            <div v-if="valid && !complete" class="input-container">
                 <div class="input-block center">
-                    <button @click.stop.prevent="submit">Complete Registration</button>
+                    <button @click.stop.prevent="submit" 
+                        class="register-button" 
+                        :class="sending ? 'sending' : ''"
+                    >
+                            <transition name="button-text">
+
+                                <div key="button-sending" 
+                                    v-if="sending"
+                                    class="button-text"
+                                >Saving</div>
+
+                                <div key="buton-default" 
+                                    class="button-text"
+                                    v-else >Complete Registration</div>
+
+                            </transition>
+                    </button>
                 </div>
+            </div>
+        </transition>
+
+        <transition name="complete">
+            <div class="registration-complete" v-if="complete">
+
+                <div class="center">
+                    <h1>Registration Complete</h1>
+                </div>
+
+                <p class="center">A confirmation email has been sent to <br/><span class="bold">{{ email }}</span></p>
+
+                <div class="center italic">
+                    <h1>Thank You</h1>
+                </div>
+
             </div>
         </transition>
 
@@ -93,10 +125,13 @@
 
         data: function() {
             return {
-                name: '',
-                email: '',
+                name: 'Mike Minckler',
+                email: 'mike@gmail.com',
                 events: [],
-                selectedEvents: []
+                selectedEvents: [],
+                sending: false,
+                complete: false,
+                buttonText: 'Complete Registration'
             }
         },
 
@@ -131,19 +166,37 @@
 
             submit: function() {
 
-                let post_data = {
-                    'name': this.name,
-                    'email': this.email,
-                    'events': this.selectedEvents
+                if (this.sending != true) {
+
+                    this.sending = true;
+
+                    let post_data = {
+                        'name': this.name,
+                        'email': this.email,
+                        'events': this.$lodash.map(this.selectedEvents, 'id')
+                    }
+                    
+                    this.$http.post('/events/register', post_data).then( response => {
+
+                        setTimeout( () => {
+                            this.displayComplete();
+                        }, 1000);
+
+                    }, error => {
+                    
+                    });
+
                 }
-                
-                this.$http.post('/events/register', post_data).then( response => {
+
+            },
+
+            displayComplete: function() {
+            
+                this.complete = true;
+                setTimeout( () => {
                     this.$store.dispatch('setRegistered', true);
-                }, error => {
-                
-                });
-
-
+                }, 4000);
+            
             }
 
         }

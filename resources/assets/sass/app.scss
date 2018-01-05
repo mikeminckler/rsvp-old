@@ -36,7 +36,11 @@ h1, h2, h3 {
 
 h1 {
     font-size: 22px;
-    padding: 15px 0px 25px 0px;
+    padding: 15px 0px 15px 0px;
+}
+
+li {
+    list-style-type: square;
 }
 
 .italic {
@@ -49,6 +53,7 @@ h1 {
 
 .center {
     text-align: center;
+    width: 100%;
 }
 
 .flexbox {
@@ -92,8 +97,8 @@ img.logo {
 button {
     background-color: rgba(255,255,255,0.1);
     border: 0.5px solid #ffffff;
-    padding: 5px 20px;
     margin: 0px;
+    padding: 0px;
     font-family: var(--font);
     font-size: var(--font-size);
     font-weight: 400;
@@ -105,7 +110,54 @@ button {
     outline: 0;
     border-radius: 5px;
     margin: 10px 0;
+    transition: width 500ms ease;
+    position: relative;
+    text-align: center;
 }
+
+button.register-button {
+    width: 190px;
+    height: 30px;
+    overflow: hidden;
+}
+
+button.register-button.sending {
+    width: 85px;
+}
+
+div.button-text {
+    position: absolute;
+    top: 5px;
+    width: 100%;
+}
+
+div.button-text-enter-active {
+    animation: button-text 500ms;
+}
+
+div.button-text-leave-active {
+    animation: button-text-leave 500ms;
+}
+
+
+@keyframes button-text {
+    0% {
+        left: -100px;
+    }
+    100%   {
+        left: 0;
+    }
+}
+
+@keyframes button-text-leave {
+    0% {
+        left: 0;
+    }
+    100%   {
+        left: 100px;
+    }
+}
+
 
 input {
     font-family: var(--font);
@@ -190,6 +242,30 @@ div.event-info {
     padding-left: 15px;
 }
 
+div.registration-complete {
+    max-width: 350px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+div.registration-info {
+    display: flex;
+    padding-bottom: 15px;
+}
+
+div.registration-info div.field {
+    min-width: 50px;
+    font-style: italic;
+}
+
+div.registration-info div.value {
+    flex: 1;
+    font-weight: 400;
+}
+
 /* TRANSITIONS */
 
 .fade-enter-active,
@@ -219,7 +295,23 @@ div.event-info {
     max-height: calc(100vh - 22px);
 }
 
-/* BUTTON */
+/* LIST */
+
+.list-leave-active, .list-enter-active {
+    transition: max-height 250ms ease-in-out;
+    overflow: hidden;
+}
+
+.list-enter, .list-leave-to {
+    max-height: 0;
+    padding: 0;
+}
+
+.list-enter-to, .list-leave {
+    max-height: 75px;
+}
+
+/* BUTTON 
 
 .button-leave-active, .button-enter-active {
     transition: max-height 250ms ease;
@@ -233,18 +325,28 @@ div.event-info {
     max-height: 80px;
 }
 
+*/
+
 /* INITIAL */
 
-.initial-leave-active, .initial-enter-active {
-    transition: max-height 2250ms ease;
+.complete-enter-active {
+    animation: complete 2s ease-out;
 }
 
-.initial-enter, .initial-leave-to {
-    max-height: 0;
+.complete-leave-active {
+    animation: complete 2s reverse;
 }
 
-.initial-enter-to, .initial-leave {
-    max-height: 100vh;
+@keyframes complete  {
+    0% {
+        max-height: 0;
+    }
+    75% {
+        max-height: 0;
+    }
+    100% {
+        max-height: 225px;
+    }
 }
 
 
@@ -284,26 +386,24 @@ iframe {
     transition: opacity 250ms ease-out;
 }
 
-div.youtube {
+div.youtube-player {
     overflow: hidden;
     border-top: 1px solid var(--font-color);
     border-bottom: 1px solid var(--font-color);
-    width: 0;
-    height: 0;
+    width: 100vw;
+    height: 56.25vw;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-div.youtube.ended {
-    animation: youtube 2s reverse;
+div.youtube-transition-enter-active {
+    animation: youtube 2s;
 }
 
-div.youtube.loaded {
-    animation: youtube 2s;
-    width: 100vw;
-    height: 56.25vw;
+div.youtube-transition-leave-active {
+    animation: youtube 2s reverse;
 }
 
 @keyframes youtube {

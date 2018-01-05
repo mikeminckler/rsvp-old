@@ -1,5 +1,5 @@
 
-window._ = require('lodash');
+//window._ = require('lodash');
 window.axios = require('axios');
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
@@ -13,6 +13,8 @@ if (token) {
 
 
 import Vue from 'vue'
+import lodash from 'lodash';
+Object.defineProperty(Vue.prototype, '$lodash', { value: lodash });
 import Vuex from 'vuex'
 Vue.use(Vuex);
 Vue.prototype.$http = axios;
@@ -33,7 +35,7 @@ const store = new Vuex.Store({
         user: {
             id: ''
         },
-        registered: true,
+        registered: false,
         youtubeReady: false
     },
 
