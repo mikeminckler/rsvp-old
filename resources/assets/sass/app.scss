@@ -242,6 +242,14 @@ div.event-info {
     padding-left: 15px;
 }
 
+div.register {
+    overflow: hidden;
+}
+
+div.registrtaion-form {
+    overflow: hidden;
+}
+
 div.registration-complete {
     max-width: 350px;
     display: flex;
@@ -270,7 +278,7 @@ div.registration-info div.value {
 
 .fade-enter-active,
 .fade-leave-active {
-    transition: opacity 250ms ease-out;
+    transition: opacity 1s ease-out;
 }
 
 .fade-enter,
@@ -281,6 +289,37 @@ div.registration-info div.value {
 
 /* EXPANDER */
 
+.expander-enter-active {
+    animation: expander 5s ease-out;
+}
+
+.expander-leave-active {
+    animation: expander-leave 1s
+}
+
+@keyframes expander  {
+    0% {
+        max-height: 0;
+    }
+    5% {
+        max-height: 0;
+    }
+    100% {
+        max-height: 100vh;
+    }
+}
+
+@keyframes expander-leave  {
+    0% {
+        max-height: 100vh;
+    }
+    100% {
+        max-height: 0;
+    }
+}
+
+
+/*
 .expander-leave-active, .expander-enter-active {
     transition: max-height 1250ms ease-in-out;
     overflow: hidden;
@@ -294,6 +333,7 @@ div.registration-info div.value {
 .expander-enter-to, .expander-leave {
     max-height: calc(100vh - 22px);
 }
+*/
 
 /* LIST */
 

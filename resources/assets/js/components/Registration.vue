@@ -2,7 +2,7 @@
 
     <div class="registration-form">
 
-        <transition name="expander" appear>
+        <transition name="fade" appear>
             <div class="input-container">
                 <div class="logo">
                     <img src="images/bcs_logo_white.png" class="logo"/>
@@ -125,13 +125,12 @@
 
         data: function() {
             return {
-                name: 'Mike Minckler',
-                email: 'mike@gmail.com',
+                name: '',
+                email: '',
                 events: [],
                 selectedEvents: [],
                 sending: false,
-                complete: false,
-                buttonText: 'Complete Registration'
+                complete: false
             }
         },
 
@@ -178,9 +177,9 @@
                     
                     this.$http.post('/events/register', post_data).then( response => {
 
-                        setTimeout( () => {
+                        //setTimeout( () => {
                             this.displayComplete();
-                        }, 1000);
+                        //}, 1000);
 
                     }, error => {
                     

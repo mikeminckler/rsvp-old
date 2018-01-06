@@ -3,7 +3,9 @@
 @section ('content')
 
 <transition name="expander">
-    <registration v-if="!$store.state.registered"></registration>
+    <div class="register" v-if="!$store.state.registered">
+        <registration></registration>
+    </div>
 </transition>
 
 <youtube-video video-id="Y0jdqYaEYlY" v-if="$store.state.registered"></youtube-video> 
