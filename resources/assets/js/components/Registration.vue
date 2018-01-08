@@ -22,12 +22,12 @@
         <transition name="expander" appear>
             <div class="input-container" v-if="!complete">
                 <div class="input-block">
-                    <p class="italic center">Which event are you planning on attending?</p>
+                    <p class="italic center bold">Which event are you planning on attending?</p>
                 </div>
             </div>
         </transition>
 
-        <transition name="expander" appear>
+        <transition name="expander">
             <div class="input-container" v-if="!complete">
 
                 <transition-group name="list">
@@ -59,7 +59,7 @@
 
         <transition name="expander" appear>
             <div class="input-container" v-if="selectedEvents.length && !complete">
-                <div class="input-block">
+                <div class="input-block input-name">
                     <input type="text" v-model="name" placeholder="Name" class="center" />
                 </div>
             </div>
@@ -67,7 +67,7 @@
 
         <transition name="expander" appear>
             <div class="input-container" v-if="selectedEvents.length && !complete">
-                <div class="input-block">
+                <div class="input-block input-email">
                     <input type="text" v-model="email" placeholder="Email" class="center" />
                 </div>
             </div>
@@ -187,10 +187,10 @@
                 }
 
                 if (this.selectedEvents.length) {
-                    return '66%';
+                    return '69%';
                 } 
 
-                return '33%';
+                return '30%';
             }
         },
 

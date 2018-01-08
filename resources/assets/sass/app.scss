@@ -29,6 +29,10 @@ html, body {
     padding: 0px;
 }
 
+p {
+    margin: 5px 0;
+}
+
 h1, h2, h3 {
     font-weight: var(--font-weight);
     margin: 0;
@@ -37,7 +41,7 @@ h1, h2, h3 {
 
 h1 {
     font-size: 22px;
-    padding: 15px 0px 15px 0px;
+    padding: 0;
 }
 
 li {
@@ -59,6 +63,10 @@ li {
 
 .flexbox {
     display: flex;
+}
+
+.border-bottom {
+    border-bottom: 1px solid var(--border-color);
 }
 
 label {
@@ -89,16 +97,16 @@ div.content {
 div.logo {
     text-align: center;
     padding: 10px;
+    width: 100%;
 }
 
 img.logo {
-    max-width: 300px;
+    max-width: 200px;
 }
 
 button {
     background-color: rgba(255,255,255,0.1);
     border: 0.5px solid #ffffff;
-    margin: 0px;
     padding: 0px;
     font-family: var(--font);
     font-size: var(--font-size);
@@ -231,6 +239,12 @@ div.input-block {
     width: 100%;
 }
 
+div.input-name {
+}
+
+div.input-email {
+}
+
 div.label {
     flex: 1;
 }
@@ -241,6 +255,9 @@ div.input {
 
 div.event-info {
     padding-left: 15px;
+    font-size: calc( var(--font-size) - 2px );
+    line-height: calc( var(--font-size) + 2px);
+    padding-bottom: 10px;
 }
 
 div.register {
@@ -293,7 +310,7 @@ div.progress-item {
 
 div.progress-bar {
     width: 100%;
-    padding: 25px 15px;
+    padding: 15px;
     position: relative;
 }
 
@@ -430,13 +447,12 @@ div.progress-slice-bottom.progress-slice {
 /* LIST */
 
 .list-leave-active, .list-enter-active {
-    transition: max-height 250ms ease-in-out;
+    transition: max-height 1250ms ease-in-out;
     overflow: hidden;
 }
 
 .list-enter, .list-leave-to {
     max-height: 0;
-    padding: 0;
 }
 
 .list-enter-to, .list-leave {
