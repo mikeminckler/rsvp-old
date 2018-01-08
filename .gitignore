@@ -15,3 +15,4 @@ composer.lock
 /public/js/*
 /public/css/app*
 /public/build/
+/public/mix-manifest.json

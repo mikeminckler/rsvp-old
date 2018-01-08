@@ -18,33 +18,17 @@
             </div>
         </transition>
 
-        <transition name="expander" appear>
-            <div class="input-container" v-if="!complete">
-                <div class="input-block">
-                    <input type="text" v-model="name" placeholder="Name" class="center" />
-                </div>
-            </div>
-        </transition>
 
         <transition name="expander" appear>
             <div class="input-container" v-if="!complete">
-                <div class="input-block">
-                    <input type="text" v-model="email" placeholder="Email" class="center" />
-                </div>
-            </div>
-        </transition>
-
-
-        <transition name="expander">
-            <div class="input-container" v-if="name.length && validEmail && !complete">
                 <div class="input-block">
                     <p class="italic center">Which event are you planning on attending?</p>
                 </div>
             </div>
         </transition>
 
-        <transition name="expander">
-            <div class="input-container" v-if="name.length && validEmail && !complete">
+        <transition name="expander" appear>
+            <div class="input-container" v-if="!complete">
 
                 <transition-group name="list">
 
@@ -71,6 +55,26 @@
             </div>
         </transition>
 
+
+
+        <transition name="expander" appear>
+            <div class="input-container" v-if="selectedEvents.length && !complete">
+                <div class="input-block">
+                    <input type="text" v-model="name" placeholder="Name" class="center" />
+                </div>
+            </div>
+        </transition>
+
+        <transition name="expander" appear>
+            <div class="input-container" v-if="selectedEvents.length && !complete">
+                <div class="input-block">
+                    <input type="text" v-model="email" placeholder="Email" class="center" />
+                </div>
+            </div>
+        </transition>
+
+
+
         <transition name="expander">
             <div v-if="valid && !complete" class="input-container">
                 <div class="input-block center">
@@ -91,6 +95,30 @@
 
                             </transition>
                     </button>
+                </div>
+            </div>
+        </transition>
+
+
+        <transition name="progress" appear>
+            <div v-if="!complete" class="input-container">
+                <div class="progress-bar" v-if="!complete">
+
+                    <div class="progress-indicator">
+                        <div class="progress-slice progress-slice-top" :style="'width: ' + stepWidth + ';'"></div>
+                        <div class="progress-slice progress-slice-bottom" :style="'width: ' + stepWidth + ';'"></div>
+                    </div>
+
+                    <div class="progress-bg">
+                        <div class="progress-slice-bg progress-slice-top"></div>
+                        <div class="progress-slice-bg progress-slice-bottom"></div>
+                    </div>
+
+                    <div class="progress-steps">
+                        <div class="progress-item" 
+                            v-for="step in steps"
+                            >{{ step }}</div>
+                    </div>
                 </div>
             </div>
         </transition>
@@ -130,7 +158,12 @@
                 events: [],
                 selectedEvents: [],
                 sending: false,
-                complete: false
+                complete: false,
+                steps: [
+                    'Sessions',
+                    'Name & Email',
+                    'Submit'
+                ]
             }
         },
 
@@ -140,12 +173,24 @@
 
         computed: {
             valid() {
-                return this.name.length && this.email.length && this.selectedEvents.length ? true : false;
+                return this.name.length && this.validEmail && this.selectedEvents.length ? true : false;
             },
             validEmail() {
                 let mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
                 let email = String(this.email);
                 return Boolean(email.match(mailformat));
+            },
+            stepWidth() {
+
+                if (this.valid) {
+                    return '100%';
+                }
+
+                if (this.selectedEvents.length) {
+                    return '66%';
+                } 
+
+                return '33%';
             }
         },
 
