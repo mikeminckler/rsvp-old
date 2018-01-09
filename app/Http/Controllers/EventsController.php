@@ -10,8 +10,17 @@ use App\Mail\RegistrationConfirmation;
 
 use Carbon\Carbon;
 
+use App\Registration;
+
 class EventsController extends Controller
 {
+
+    protected $registration;
+
+    public function __construct(Registration $registration)
+    {
+        $this->registration = $registration;
+    }
 
     public function load()
     {
@@ -30,6 +39,7 @@ class EventsController extends Controller
         foreach ($events as $event) {
             $ics->push($event->ics()); 
             Mail::to($event->host_email)->send(new RegisterForEvents($name, $email, $events));
+            $this->registration->saveRegistration($name, $email, $event);
         }
 
 

@@ -16,11 +16,13 @@ Route::get('/home', 'PagesController@home')->name('home');
 
 Auth::routes();
 
-//Route::group(['middleware' => 'auth'], function () {
+Route::group(['middleware' => 'auth'], function () {
 
     Route::post('/users/load', 'UsersController@load')->name('users.load');
 
-//});
+    Route::get('/registrations', 'RegistrationsController@index')->name('registrations');
+
+});
 
 Route::post('/events/load', 'EventsController@load')->name('events.load');
 Route::post('/events/register', 'EventsController@register')->name('events.register');
