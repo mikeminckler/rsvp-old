@@ -13,8 +13,14 @@ if (token) {
 
 
 import Vue from 'vue'
+
 import lodash from 'lodash';
 Object.defineProperty(Vue.prototype, '$lodash', { value: lodash });
+
+
+import moment from 'moment';
+Object.defineProperty(Vue.prototype, '$moment', { value: moment });
+
 import Vuex from 'vuex'
 Vue.use(Vuex);
 Vue.prototype.$http = axios;
@@ -23,10 +29,7 @@ Vue.component('auth', require('./components/Auth.vue'));
 Vue.component('registration', require('./components/Registration.vue'));
 Vue.component('youtube-video', require('./components/YoutubeVideo.vue'));
 
-
-
 //Vue.component('page-content', require('./components/PageContent.vue'));
-
 
 const store = new Vuex.Store({
 

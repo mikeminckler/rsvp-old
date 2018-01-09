@@ -18,6 +18,8 @@ class CreateEventsTable extends Migration
             $table->string('title');
             $table->dateTime('date');
             $table->string('location');
+            $table->string('host_name');
+            $table->string('host_email');
             $table->timestamps();
         });
     }

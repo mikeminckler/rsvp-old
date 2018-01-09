@@ -34,6 +34,7 @@ class RegisterForEvents extends Mailable
      */
     public function build()
     {
-        return $this->view('mail.register-for-events');
+        return $this->view('mail.register-for-events')
+            ->subject('Info Session Registration');
     }
 }

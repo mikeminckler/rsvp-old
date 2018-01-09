@@ -7,7 +7,7 @@
 
         <title>Laravel</title>
 
-        <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i" rel="stylesheet">
         <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
 
         <meta name="csrf-token" content="{{ csrf_token() }}">

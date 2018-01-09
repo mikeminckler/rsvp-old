@@ -18,7 +18,7 @@
 
 	<ul>
 	@foreach ($events as $event)
-		<li>{{ $event->title }} {{ $event->date }} {{ $event->location }}</li>
+		<li>{{ $event->title }} - {{ $event->date }} - {{ $event->location }}</li>
 	@endforeach
 	</ul>
 

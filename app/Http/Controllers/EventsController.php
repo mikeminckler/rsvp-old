@@ -6,6 +6,7 @@ use App\Event;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\RegisterForEvents;
+use App\Mail\RegistrationConfirmation;
 
 use Carbon\Carbon;
 
@@ -18,15 +19,21 @@ class EventsController extends Controller
         return response()->json(['events' => $events]);
     }
 
-
     public function register()
     {
 
         $name = request()->input('name');
         $email = request()->input('email');
         $events = Event::whereIn('id', request()->input('events'))->get();
+        $ics = collect();
 
-        //Mail::to('mike.minckler@brentwood.ca')->send(new RegisterForEvents($name, $email, $events));
+        foreach ($events as $event) {
+            $ics->push($event->ics()); 
+            Mail::to($event->host_email)->send(new RegisterForEvents($name, $email, $events));
+        }
+
+
+        Mail::to($email)->send(new RegistrationConfirmation($name, $email, $events, $ics));
 
         return response()->json(['success' => 'registered']);
     

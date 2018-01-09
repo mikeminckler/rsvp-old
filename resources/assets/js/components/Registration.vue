@@ -45,7 +45,7 @@
                         </div>
                         <div class="event-info">
                             <label :for="'event_' + event.id">
-                                <span class="bold">{{ event.title }}</span> {{ event.date }}<br /> {{ event.location }}
+                                <span class="bold">{{ event.title }}</span> {{ $moment(event.date).format('ddd MMM D, h:mma') }}<br /> {{ event.location }}
                             </label>
                         </div>
                     </div>
@@ -57,7 +57,7 @@
 
 
 
-        <transition name="expander" appear>
+        <transition name="name-email">
             <div class="input-container" v-if="selectedEvents.length && !complete">
                 <div class="input-block input-name">
                     <input type="text" v-model="name" placeholder="Name" class="center" />
@@ -65,7 +65,7 @@
             </div>
         </transition>
 
-        <transition name="expander" appear>
+        <transition name="name-email">
             <div class="input-container" v-if="selectedEvents.length && !complete">
                 <div class="input-block input-email">
                     <input type="text" v-model="email" placeholder="Email" class="center" />
