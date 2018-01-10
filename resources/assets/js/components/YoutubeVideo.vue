@@ -1,10 +1,8 @@
 <template>
 
-    <transition name="youtube-transition">
-        <div class="youtube-player" v-show="show">
-            <div id="player"></div>
-        </div>
-    </transition>
+    <div class="youtube-player" :class="show ? 'visible' : ''">
+        <div id="player"></div>
+    </div>
 
 </template>
 
@@ -80,11 +78,61 @@
             
             },
 
-            onPlayerReady: function() {
+            showPlayer: function() {
 
-                this.show = true;
+                this.parentWidth = this.player.getIframe().parentElement.parentElement.clientWidth;
+
+                this.player.getIframe().parentElement.animate([
+                    {
+                        width: '0',
+                        height: '0'
+                    },
+                    {
+                        width: this.parentWidth + 'px',
+                        height: '0'
+                    },
+                    {
+                        width: this.parentWidth + 'px',
+                        height: 'calc((' + this.parentWidth + 'px * 9) / 16)'
+                    }
+
+                ], 1000
+                );
 
                 this.resize();
+                this.show = true;
+
+            },
+
+            hide: function() {
+                
+                this.player.getIframe().parentElement.animate([
+                    {
+                        width: this.parentWidth + 'px',
+                        height: 'calc((' + this.parentWidth + 'px * 9) / 16)'
+                    },
+                    {
+                        width: this.parentWidth + 'px',
+                        height: '0'
+                    },
+                    {
+                        width: '0',
+                        height: '0'
+                    }
+
+                ], 1000
+                );
+
+                this.player.getIframe().parentElement.style.width = '0';
+                this.player.getIframe().parentElement.style.height = '0';
+
+                this.show = false;
+            },
+
+            onPlayerReady: function() {
+
+                this.player.setVolume(20);
+                this.showPlayer();
 
                 if (this.autoplay) {
                     setTimeout( () => {
@@ -94,26 +142,25 @@
 
             },
 
-            onPlayerStateChange: function(event) {
-
-                if (event.data == YT.PlayerState.ENDED) {
-                    this.player.getIframe().style.opacity = '0';
-                    this.show = false;
-                }
-
-            },
 
             resize: function() {
 
-                // this gets the container above this component
                 this.parentWidth = this.player.getIframe().parentElement.parentElement.clientWidth;
-
                 this.player.getIframe().style.width = this.parentWidth + 'px';
                 this.player.getIframe().style.height = 'calc((' + this.parentWidth + 'px * 9) / 16)';
-                this.player.setVolume(20);
-                this.player.getIframe().style.opacity = '1';
             
-            }
+                this.player.getIframe().parentElement.style.width = this.parentWidth + 'px';
+                this.player.getIframe().parentElement.style.height = 'calc((' + this.parentWidth + 'px * 9) / 16)';
+
+            },
+
+            onPlayerStateChange: function(event) {
+
+                if (event.data == YT.PlayerState.ENDED) {
+                    this.hide();
+                }
+
+            },
 
         
         }
