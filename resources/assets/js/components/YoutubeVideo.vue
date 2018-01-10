@@ -12,12 +12,13 @@
 
     export default {
 
-        props: ['videoId'],
+        props: ['videoId', 'autoplay'],
 
         data: function() {
             return {
                 player: {},
-                show: false
+                show: false,
+                parentWidth: 0
             }
         },
 
@@ -25,14 +26,24 @@
 
             ready() {
                 this.loadVideo(); 
+            },
+
+            screen() {
+                this.resize();
             }
-        
+
         },
 
         computed: {
+
             ready() {
                 return this.$store.state.youtubeReady;
+            },
+
+            screen() {
+                return this.$store.state.screen;
             }
+
         },
 
         mounted() {
@@ -40,7 +51,7 @@
             if (this.ready) {
                 this.loadVideo();
             }
-      
+
         },
 
         methods: {
@@ -63,23 +74,23 @@
                         iv_load_policy: 3,
                         fs: 0,
                         enablejsapi: 1,
-                        disablekb: 1,
-                        //start: 29
+                        disablekb: 1
                     }
                 });
             
             },
 
             onPlayerReady: function() {
-                this.player.getIframe().style.cssText = 'width: 100vw; height: 56.25vw;';
-                this.player.setVolume(20);
-                this.player.getIframe().style.opacity = '1';
 
                 this.show = true;
 
-                setTimeout( () => {
-                    this.player.playVideo();
-                }, 2000);
+                this.resize();
+
+                if (this.autoplay) {
+                    setTimeout( () => {
+                        this.player.playVideo();
+                    }, 2000);
+                }
 
             },
 
@@ -90,7 +101,20 @@
                     this.show = false;
                 }
 
+            },
+
+            resize: function() {
+
+                // this gets the container above this component
+                this.parentWidth = this.player.getIframe().parentElement.parentElement.clientWidth;
+
+                this.player.getIframe().style.width = this.parentWidth + 'px';
+                this.player.getIframe().style.height = 'calc((' + this.parentWidth + 'px * 9) / 16)';
+                this.player.setVolume(20);
+                this.player.getIframe().style.opacity = '1';
+            
             }
+
         
         }
 

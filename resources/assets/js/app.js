@@ -1,5 +1,4 @@
 
-//window._ = require('lodash');
 window.axios = require('axios');
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
@@ -26,7 +25,9 @@ Vue.use(Vuex);
 Vue.prototype.$http = axios;
 
 Vue.component('auth', require('./components/Auth.vue'));
+Vue.component('page-menu', require('./components/PageMenu.vue'));
 Vue.component('registration', require('./components/Registration.vue'));
+Vue.component('spinner', require('./components/Spinner.vue'));
 Vue.component('youtube-video', require('./components/YoutubeVideo.vue'));
 
 //Vue.component('page-content', require('./components/PageContent.vue'));
@@ -39,7 +40,11 @@ const store = new Vuex.Store({
             id: ''
         },
         registered: false,
-        youtubeReady: false
+        youtubeReady: false,
+        screen: {
+            width: window.innerWidth,
+            height: window.innerHeight
+        }
     },
 
     mutations: {
@@ -52,6 +57,9 @@ const store = new Vuex.Store({
         },
         setYoutubeReady (state, ready) {
             state.youtubeReady = ready;
+        },
+        setScreenSize (state, screen) {
+            state.screen = screen;
         }
     
     },
@@ -66,6 +74,9 @@ const store = new Vuex.Store({
         },
         setYoutubeReady({ commit, state }, ready) {
             commit('setYoutubeReady', ready);
+        },
+        setScreenSize({ commit, state }, screen) {
+            commit('setScreenSize', screen);
         }
     
     }
@@ -93,9 +104,21 @@ const app = new Vue({
             app.$store.dispatch('setYoutubeReady', true);
         }
 
+        window.addEventListener('resize', this.screenResize);
+
     },
 
     methods: {
+
+        screenResize: _.debounce(
+            function(event) {
+                let screen = {
+                    width: event.currentTarget.innerWidth,
+                    height: event.currentTarget.innerHeight,
+                }
+                app.$store.dispatch('setScreenSize', screen);
+            }, 100
+        ),
 
     
     }

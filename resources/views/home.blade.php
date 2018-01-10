@@ -2,12 +2,24 @@
 
 @section ('content')
 
-<transition name="expander">
-    <div class="register" v-if="!$store.state.registered">
-        <registration></registration>
-    </div>
-</transition>
+<div class="section">
 
-<youtube-video video-id="Y0jdqYaEYlY" v-if="$store.state.registered"></youtube-video> 
+    <div class="column">
+
+        <transition name="expander">
+            <div class="register" v-if="!$store.state.registered">
+                <registration></registration>
+            </div>
+        </transition>
+
+        <youtube-video video-id="Y0jdqYaEYlY" v-if="$store.state.registered"></youtube-video> 
+
+    </div>
+
+    <div class="column width-50">
+        <youtube-video video-id="Y0jdqYaEYlY"></youtube-video> 
+    </div>
+
+</div>
 
 @endsection

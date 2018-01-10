@@ -86,11 +86,13 @@
 
                                 <div key="button-sending" 
                                     v-if="sending"
-                                    class="button-text"
-                                >Saving</div>
+                                    class="button-text button-text-saving"
+                                    >Saving
+                                    <spinner></spinner>
+                                </div>
 
                                 <div key="buton-default" 
-                                    class="button-text"
+                                    class="button-text button-text-submit"
                                     v-else >Complete Registration</div>
 
                             </transition>
@@ -220,6 +222,7 @@
                         'events': this.$lodash.map(this.selectedEvents, 'id')
                     }
                     
+
                     this.$http.post('/events/register', post_data).then( response => {
 
                         //setTimeout( () => {
@@ -229,6 +232,7 @@
                     }, error => {
                     
                     });
+
 
                 }
 

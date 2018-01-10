@@ -9,7 +9,7 @@
             @mouseleave="hover = false"
             :class="hover ? 'hover' : ''"
         >
-            <div class="fas fa-sign-in-alt"></div>
+            <div class="login-button"></div>
         </div>
 
         <transition name="fade">
