@@ -23,7 +23,7 @@
 
             <page-menu></page-menu>
 
-            <div class="content">
+            <div class="container">
 
                 @yield ('content')
 

@@ -25,4 +25,4 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 Route::post('/events/load', 'EventsController@load')->name('events.load');
-Route::post('/events/register', 'EventsController@register')->name('events.register');
+Route::post('/events/register', 'RegistrationsController@register')->name('events.register');

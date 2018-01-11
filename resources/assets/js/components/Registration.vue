@@ -155,8 +155,8 @@
 
         data: function() {
             return {
-                name: '',
-                email: '',
+                name: 'Jimmy Page',
+                email: 'mike.minckler@brentwood.ca',
                 events: [],
                 selectedEvents: [],
                 sending: false,
@@ -225,9 +225,9 @@
 
                     this.$http.post('/events/register', post_data).then( response => {
 
-                        //setTimeout( () => {
+                        setTimeout( () => {
                             this.displayComplete();
-                        //}, 1000);
+                        }, 1000);
 
                     }, error => {
                     
