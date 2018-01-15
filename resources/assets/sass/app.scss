@@ -1,5 +1,6 @@
 :root {
   --font: 'Open Sans', sans-serif;
+  --font-numbers: 'Playfair Display', serif;
   --font-size: 15px;
   --line-height: 26px;
   --font-weight: 300;
@@ -8,6 +9,7 @@
   --bg-color: #d0343a;
   --link-color: #fffcda;
   --border-color: rgba(255,255,255,0.5);
+  --border-radius: 5px;
   --progress-height: 24px; /* this should be a even number */
   --header-size: 22px;
 }
@@ -85,20 +87,15 @@ li {
     border-bottom: 1px solid var(--border-color);
 }
 
+.border {
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+}
+
 label {
     cursor: pointer;
 }
 
-div.app {
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    width: calc(100vw - 42px);
-    margin: 0;
-    flex-direction: column;
-    min-height: 100vh;
-    width: 100%;
-}
 
 
 div.logo {
@@ -123,7 +120,7 @@ div.footer {
 
 button {
     background-color: rgba(255,255,255,0.1);
-    border: 1px solid #ffffff;
+    border: 1px solid var(--border-color);
     padding: 0px;
     font-family: var(--font);
     font-size: var(--font-size);
@@ -674,6 +671,35 @@ div.youtube-player {
 
 /* LAYOUT */
 
+div.app {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    width: calc(100vw - 42px);
+    margin: 0;
+    flex-direction: column;
+    min-height: 100vh;
+    width: 100%;
+}
+
+div.background {
+    width: 100%;
+    z-index: 0;
+    position: relative;
+    top: 0;
+    height: 0px;
+    overflow: visible;
+    text-align: right;
+}
+
+img.background-icon {
+    opacity: 0.1;
+    height: 1000px;
+    position: relative;
+    transform: perspective( 1000px ) rotateY( -25deg );
+}
+
+
 div.container {
     display: flex;
     flex-direction: column;
@@ -682,6 +708,8 @@ div.container {
     overflow: hidden;
     width: 100%;
     flex: 1;
+    z-index: 5;
+    position: relative;
 }
 
 div.section {
@@ -690,13 +718,13 @@ div.section {
     max-width: 1800px;
     display: grid;
     flex: 1;
-    grid-template-columns: repeat(auto-fit, minmax(480px, 900px));
+    grid-template-columns: repeat(auto-fit, minmax(400px,600px));
     justify-content: center;
     align-content: center;
 }
 
 div.column {
-    min-width: 480px;
+    min-width: 600px;
     transition: width 1s ease-out;
     overflow: hidden;
     flex: 1;
@@ -709,6 +737,11 @@ div.column {
     align-items: center;
     border-left: 1px solid var(--border-color);
     border-right: 1px solid var(--border-color);
+
+    min-height: 270px;
+
+    transition: transform 1s;
+   
 }
 
 div.column:not(:first-child) {
@@ -730,14 +763,12 @@ div.column.width-100 {
     width: 100%;
 }
 
-div.column.red {
-    background-color: var(--bg-color);
-    color: var(--font-color);
+.red {
+    background-color: rgba(191,48,53,1);
 }
 
-div.column.white {
-    background-color: var(--font-color);
-    color: #000;
+.white {
+    background-color: rgba(255,255,255,0.1);
 }
 
 div.content img {
@@ -769,16 +800,75 @@ div.grid-list-item {
     display: flex;
 }
 
-div.grid-list-item::before {
+div.grid-list-icon::before {
     display: none;
     font-family: "Font Awesome 5 Solid";   
     content: "\f00c";
 }
 
-div.grid-list-item svg {
+div.grid-list-icon svg {
     padding-right: 5px;
     font-size: 12px;
     padding-top: 10px;
+}
+
+video {
+    width: 101%;
+}
+
+div.info-fact {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+div.fact-grid {
+    margin: 0;
+    width: 100%;
+    max-width: 1800px;
+    display: grid;
+    flex: 1;
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: center;
+    align-content: center;
+}
+
+/* ICONS */
+
+div.large-icon svg {
+    padding: 10px;
+}
+
+div.clock::before {
+    display: none;
+    font-family: "Font Awesome 5 Regular";   
+    content: "\f017";
+}
+
+div.clock svg {
+    font-size: 60px;
+}
+
+div.dollar::before {
+    display: none;
+    font-family: "Font Awesome 5 Solid";   
+    content: "\f155";
+}
+
+div.dollar svg {
+    font-size: 60px;
+}
+
+div.large-number {
+    font-size: 70px;
+    font-family: var(--font-numbers);
+    line-height: 60px;
+}
+
+.percent {
+    font-size: 30px;
 }
 
 

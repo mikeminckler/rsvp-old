@@ -1,7 +1,7 @@
 <template>
 
     <div class="youtube-player" :class="show ? 'visible' : ''">
-        <div id="player"></div>
+        <div :id="'player_' + id"></div>
     </div>
 
 </template>
@@ -10,7 +10,7 @@
 
     export default {
 
-        props: ['videoId', 'autoplay'],
+        props: ['videoId', 'autoplay', 'options'],
 
         data: function() {
             return {
@@ -40,6 +40,10 @@
 
             screen() {
                 return this.$store.state.screen;
+            },
+
+            id() {
+                return this.options ? this.options.videoId : this.videoId;
             }
 
         },
@@ -58,8 +62,8 @@
 
                 var vue = this;
            
-                this.player = new YT.Player('player', {
-                    videoId: this.videoId,
+                this.player = new YT.Player('player_' + this.id, {
+                    videoId: this.id,
                     events: {
                         'onReady': vue.onPlayerReady,
                         'onStateChange': vue.onPlayerStateChange
@@ -75,7 +79,7 @@
                         disablekb: 1
                     }
                 });
-            
+
             },
 
             showPlayer: function() {

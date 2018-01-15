@@ -16,3 +16,4 @@ composer.lock
 /public/css/app*
 /public/build/
 /public/mix-manifest.json
+package-lock.json

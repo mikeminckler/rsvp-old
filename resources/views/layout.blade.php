@@ -7,7 +7,7 @@
 
         <title>Laravel</title>
 
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i|Playfair+Display" rel="stylesheet">
         <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
 
         <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -16,19 +16,25 @@
 
     <body>
 
-        <div id="app" class="app">
+        <div class="background">
+            <img class="background-icon" src="/images/icon-white.svg">
+        </div>
 
+
+        <div id="app" class="app">
 
             <auth user-id="{{ auth()->check() ? auth()->user()->id : '' }}"></auth>
 
             <page-menu></page-menu>
 
             <div class="container">
-
                 @yield ('content')
-
             </div>
 
+        </div>
+
+        <div class="footer">
+            <div class="tag-line">Where Students Choose To Be</div>
         </div>
 
         <script>

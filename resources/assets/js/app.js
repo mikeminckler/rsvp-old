@@ -26,11 +26,15 @@ Vue.prototype.$http = axios;
 
 Vue.component('auth', require('./components/Auth.vue'));
 Vue.component('page-menu', require('./components/PageMenu.vue'));
-Vue.component('registration', require('./components/Registration.vue'));
 Vue.component('spinner', require('./components/Spinner.vue'));
-Vue.component('youtube-video', require('./components/YoutubeVideo.vue'));
 
-//Vue.component('page-content', require('./components/PageContent.vue'));
+// CONTENT ITEMS 
+Vue.component('facts', require('./components/Facts.vue'));
+Vue.component('list', require('./components/List.vue'));
+Vue.component('logo', require('./components/Logo.vue'));
+Vue.component('registration', require('./components/Registration.vue'));
+Vue.component('youtube-video', require('./components/YoutubeVideo.vue'));
+Vue.component('html-video', require('./components/HtmlVideo.vue'));
 
 const store = new Vuex.Store({
 
@@ -91,6 +95,48 @@ const app = new Vue({
     store,
 
     data: {
+
+        pageContent: [
+                {
+                    id: 0,
+                    component: 'youtube-video',
+                    hide: false,
+                    options: {
+                        videoId: 'l3enBQNb8kM'
+                    }
+                },
+                {
+                    id: 1,
+                    component: 'html-video',
+                    hide: false,
+                    options: {
+                        src: '/videos/30sec.webm'
+                    }
+                },
+                {
+                    id: 2,
+                    component: 'logo',
+                    hide: false,
+                    options: {
+                        width: '400'
+                    }
+                },
+                {
+                    id: 3,
+                    component: 'registration',
+                    hide: false
+                },
+                {
+                    id: 4,
+                    component: 'facts',
+                    hide: false
+                },
+                {
+                    id: 5,
+                    component: 'list',
+                    hide: false
+                },
+            ]
     },
 
     mounted() {
@@ -120,6 +166,9 @@ const app = new Vue({
             }, 100
         ),
 
+        shuffle: function() {
+            this.pageContent = _.shuffle(this.pageContent);
+        }
     
     }
 });
