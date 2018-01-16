@@ -75,6 +75,16 @@ const store = new Vuex.Store({
         },
         setRegistered({ commit, state }, registered) {
             commit('setRegistered', registered);
+
+            app.pageItems = [];
+
+            setTimeout(function() {
+                app.pageItems = _.filter(app.pageContent, function(item) {
+                    return item.label == '30sec';
+                });
+            }, 1000);
+
+
         },
         setYoutubeReady({ commit, state }, ready) {
             commit('setYoutubeReady', ready);
@@ -96,11 +106,14 @@ const app = new Vue({
 
     data: {
 
+        pageItems: [],
+
         pageContent: [
                 {
                     id: 0,
                     component: 'youtube-video',
-                    hide: false,
+                    label: 'Boarding',
+                    initial: false,
                     options: {
                         videoId: 'l3enBQNb8kM'
                     }
@@ -108,7 +121,8 @@ const app = new Vue({
                 {
                     id: 1,
                     component: 'html-video',
-                    hide: false,
+                    label: '30sec',
+                    initial: false,
                     options: {
                         src: '/videos/30sec.webm'
                     }
@@ -116,7 +130,7 @@ const app = new Vue({
                 {
                     id: 2,
                     component: 'logo',
-                    hide: false,
+                    initial: false,
                     options: {
                         width: '400'
                     }
@@ -124,17 +138,19 @@ const app = new Vue({
                 {
                     id: 3,
                     component: 'registration',
-                    hide: false
+                    initial: true,
                 },
                 {
                     id: 4,
                     component: 'facts',
-                    hide: false
+                    label: 'Facts',
+                    initial: false
                 },
                 {
                     id: 5,
                     component: 'list',
-                    hide: false
+                    label: 'Info Session Benifits',
+                    initial: false,
                 },
             ]
     },
@@ -152,9 +168,22 @@ const app = new Vue({
 
         window.addEventListener('resize', this.screenResize);
 
+        this.pageItems = _.filter(this.pageContent, function(item) {
+            return item.initial;
+        });
+
     },
 
     methods: {
+
+        showContent: function(content) {
+        
+            this.pageItems = _.filter(this.pageItems, function(item) {
+                return item.id != content.id;
+            });
+            this.pageItems.unshift(content);
+        
+        },
 
         screenResize: _.debounce(
             function(event) {
@@ -166,9 +195,6 @@ const app = new Vue({
             }, 100
         ),
 
-        shuffle: function() {
-            this.pageContent = _.shuffle(this.pageContent);
-        }
     
     }
 });

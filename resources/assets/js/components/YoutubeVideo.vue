@@ -44,7 +44,12 @@
 
             id() {
                 return this.options ? this.options.videoId : this.videoId;
+            },
+
+            playerWidth() {
+                return this.parentWidth > 360 ? this.parentWidth : 360;
             }
+
 
         },
 
@@ -92,12 +97,12 @@
                         height: '0'
                     },
                     {
-                        width: this.parentWidth + 'px',
+                        width: this.playerWidth + 'px',
                         height: '0'
                     },
                     {
-                        width: this.parentWidth + 'px',
-                        height: 'calc((' + this.parentWidth + 'px * 9) / 16)'
+                        width: this.playerWidth + 'px',
+                        height: 'calc((' + this.playerWidth + 'px * 9) / 16)'
                     }
 
                 ], 1000
@@ -112,11 +117,11 @@
                 
                 this.player.getIframe().parentElement.animate([
                     {
-                        width: this.parentWidth + 'px',
-                        height: 'calc((' + this.parentWidth + 'px * 9) / 16)'
+                        width: this.playerWidth + 'px',
+                        height: 'calc((' + this.playerWidth + 'px * 9) / 16)'
                     },
                     {
-                        width: this.parentWidth + 'px',
+                        width: this.playerWidth + 'px',
                         height: '0'
                     },
                     {
@@ -150,11 +155,11 @@
             resize: function() {
 
                 this.parentWidth = this.player.getIframe().parentElement.parentElement.clientWidth;
-                this.player.getIframe().style.width = this.parentWidth + 'px';
-                this.player.getIframe().style.height = 'calc((' + this.parentWidth + 'px * 9) / 16)';
+                this.player.getIframe().style.width = this.playerWidth + 'px';
+                this.player.getIframe().style.height = 'calc((' + this.playerWidth + 'px * 9) / 16)';
             
-                this.player.getIframe().parentElement.style.width = this.parentWidth + 'px';
-                this.player.getIframe().parentElement.style.height = 'calc((' + this.parentWidth + 'px * 9) / 16)';
+                this.player.getIframe().parentElement.style.width = this.playerWidth + 'px';
+                this.player.getIframe().parentElement.style.height = 'calc((' + this.playerWidth + 'px * 9) / 16)';
 
             },
 

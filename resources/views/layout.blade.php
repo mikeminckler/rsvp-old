@@ -16,10 +16,13 @@
 
     <body>
 
-        <div class="background">
-            <img class="background-icon" src="/images/icon-white.svg">
+        <div class="background-container">
+            <div class="background">
+                <div class="background-image">
+                    <img class="background-icon" src="/images/logo-white.svg">
+                </div>
+            </div>
         </div>
-
 
         <div id="app" class="app">
 
