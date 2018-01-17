@@ -16,4 +16,12 @@ class EventsController extends Controller
         return response()->json(['events' => $events]);
     }
 
+    public function create()
+    {
+        $event = Event::createEvent();
+        if ($event instanceof Event) {
+            return response()->json(['success' => 'Event created']);
+        }
+    }
+
 }

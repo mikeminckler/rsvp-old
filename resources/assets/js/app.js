@@ -24,6 +24,9 @@ import Vuex from 'vuex'
 Vue.use(Vuex);
 Vue.prototype.$http = axios;
 
+import VueRouter from 'vue-router'
+Vue.use(VueRouter)
+
 Vue.component('auth', require('./components/Auth.vue'));
 Vue.component('page-menu', require('./components/PageMenu.vue'));
 Vue.component('spinner', require('./components/Spinner.vue'));
@@ -37,7 +40,6 @@ Vue.component('youtube-video', require('./components/YoutubeVideo.vue'));
 Vue.component('html-video', require('./components/HtmlVideo.vue'));
 
 const store = new Vuex.Store({
-
 
     state: {
         user: {
@@ -95,64 +97,37 @@ const store = new Vuex.Store({
     
     }
 
+});
 
-
+const router = new VueRouter({
+    mode: 'history',
+    routes: [
+        {
+            path: '/',
+            name: 'home',
+            component: require('./pages/LandingPage.vue')
+        },
+        {
+            path: '/registrations',
+            name: 'registrations',
+            component: require('./pages/Registrations')
+        },
+        {
+            path: '/events/create',
+            name: 'events.create',
+            component: require('./pages/Events/Create.vue')
+        },
+    ],
 });
 
 
 const app = new Vue({
     el: '#app',
     store,
+    router,
 
     data: {
 
-        pageItems: [],
-
-        pageContent: [
-                {
-                    id: 0,
-                    component: 'youtube-video',
-                    label: 'Boarding',
-                    initial: false,
-                    options: {
-                        videoId: 'l3enBQNb8kM'
-                    }
-                },
-                {
-                    id: 1,
-                    component: 'html-video',
-                    label: '30sec',
-                    initial: false,
-                    options: {
-                        src: '/videos/30sec.webm'
-                    }
-                },
-                {
-                    id: 2,
-                    component: 'logo',
-                    initial: false,
-                    options: {
-                        width: '400'
-                    }
-                },
-                {
-                    id: 3,
-                    component: 'registration',
-                    initial: true,
-                },
-                {
-                    id: 4,
-                    component: 'facts',
-                    label: 'Facts',
-                    initial: false
-                },
-                {
-                    id: 5,
-                    component: 'list',
-                    label: 'Info Session Benifits',
-                    initial: false,
-                },
-            ]
     },
 
     mounted() {
@@ -168,22 +143,9 @@ const app = new Vue({
 
         window.addEventListener('resize', this.screenResize);
 
-        this.pageItems = _.filter(this.pageContent, function(item) {
-            return item.initial;
-        });
-
     },
 
     methods: {
-
-        showContent: function(content) {
-        
-            this.pageItems = _.filter(this.pageItems, function(item) {
-                return item.id != content.id;
-            });
-            this.pageItems.unshift(content);
-        
-        },
 
         screenResize: _.debounce(
             function(event) {

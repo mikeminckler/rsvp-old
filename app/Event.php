@@ -32,5 +32,19 @@ class Event extends Model
 	}
 
 
+    public static function createEvent()
+    {
+        $event = new Event;
+        $event->title = request()->input('title');
+        $event->date = Carbon::parse(request()->input('date'));
+        $event->location = request()->input('location');
+        $event->host_name = request()->input('host_name');
+        $event->host_email = request()->input('host_email');
+        $event->save();
+
+        return $event;
+    
+    }
+
 
 }

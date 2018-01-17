@@ -414,12 +414,13 @@ div.progress-slice-bottom.progress-slice {
 /* MENU */
 
 div.page-menu {
-   position: absolute; 
+   position: relative; 
    display: flex;
    justify-content: center;
    top: 0;
    width: 100%;
    border-bottom: 1px solid var(--border-color);
+   z-index: 10;
 }
 
 div.menu-item {
@@ -687,40 +688,53 @@ div.app {
 div.background-container {
     width: 100%;
     z-index: 0;
-    position: relative;
+    position: absolute;
     top: 0;
     height: 0px;
     overflow: visible;
+    padding: 0;
+    margin: 0;
 }
 
 div.background {
-    min-width: 480px;
     width: 100%;
-    opacity: 0.075;
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: flex-end;
+    flex-direction: column;
+    overflow: hidden;
+    height: 100vh;
+}
 
+div.background-image {
+
+    /*
     border-top: 25px solid var(--border-color);
     margin-top: 50px;
     border-bottom: 25px solid var(--border-color);
     margin-bottom: 50px;
+    border-image: linear-gradient(to right, rgba(255,255,255,0), rgba(255,255,255,1), rgba(255,255,255,0)) 25 round;
+    */
+
+
+    background: radial-gradient( closest-side, rgba(191,48,53,1), var(--bg-color) );
 
     padding: 100px;
-
-    border-image: linear-gradient(to right, rgba(255,255,255,0), rgba(255,255,255,1), rgba(255,255,255,0)) 25 round;
 
     position: relative;
     perspective-origin: 0% 0%;
     /* transform-origin: left center; */
 
     transform: perspective( 920px ) rotateY( 15deg );
-    animation: rotate-logo 30s ease-in-out 0s infinite alternate;
+    animation: rotate-logo 30s linear 0s infinite alternate;
 
+    flex: 1;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-end;
     flex-direction: column;
 
-    height: 75vh;
-    min-height: 480px;
     overflow: hidden;
 }
 
@@ -733,16 +747,10 @@ div.background {
     }
 }
 
-div.background-image {
-   display: flex;
-   flex: 1;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
 
 img.background-icon {
-    height: 200px;
+    height: 100vh;
+    opacity: 0.1;
 }
 
 
@@ -759,14 +767,18 @@ div.container {
 }
 
 div.section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+div.section-grid {
     margin: 0;
     width: 100%;
-    max-width: 1800px;
     display: grid;
     flex: 1;
     grid-template-columns: repeat(auto-fit, minmax(400px,600px));
-    grid-template-columns: repeat(auto-fit, minmax(400px,600px));
-    justify-content: center;
+    justify-content: flex-start;
     align-content: center;
     position: relative;
 }
@@ -781,13 +793,29 @@ div.column {
     justify-items: center;
     align-items: center;
 
+    /*
     border-left: 1px solid var(--border-color);
     border-right: 1px solid var(--border-color);
+    */
 
     transition: all var(--grid-time) linear;
 
     position: relative;
     flex: 1;
+    width: 100%;
+}
+
+.grid-span-1-2 {
+    grid-row: auto / span 2;
+}
+
+.grid-span-2-1 {
+    grid-column: auto / span 2;
+}
+
+.grid-span-2-2 {
+    grid-row: auto / span 2;
+    grid-column: auto / span 2;
 }
 
 div.component {
@@ -797,7 +825,7 @@ div.component {
     justify-content: center;
     justify-items: center;
     align-items: center;
-    min-width: 600px;
+    width: 100%;
 }
 
 .grid-enter-active {

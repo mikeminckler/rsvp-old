@@ -19,7 +19,7 @@
         <div class="background-container">
             <div class="background">
                 <div class="background-image">
-                    <img class="background-icon" src="/images/logo-white.svg">
+                    <img class="background-icon" src="/images/icon-white.svg">
                 </div>
             </div>
         </div>

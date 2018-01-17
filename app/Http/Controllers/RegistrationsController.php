@@ -23,7 +23,7 @@ class RegistrationsController extends Controller
         $this->registration = $registration;
     }
 
-    public function index()
+    public function load()
     {
 
         $registrations = Registration::whereHas('event', function($query) {
@@ -32,7 +32,7 @@ class RegistrationsController extends Controller
             return $registration->event->date;
         });
 
-        return view('registrations.index', compact('registrations'));
+        return response()->json(['registrations' => $registrations]);
 
     }
 
