@@ -19,7 +19,7 @@
         <div class="background-container">
             <div class="background">
                 <div class="background-image">
-                    <img class="background-icon" src="/images/icon-white.svg">
+                    <img class="background-icon" src="/images/svg/icon-white.svg">
                 </div>
             </div>
         </div>
@@ -30,14 +30,8 @@
 
             <page-menu></page-menu>
 
-            <div class="container">
-                @yield ('content')
-            </div>
+            <router-view></router-view>
 
-        </div>
-
-        <div class="footer">
-            <div class="tag-line">Where Students Choose To Be</div>
         </div>
 
         <script>

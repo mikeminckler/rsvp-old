@@ -108,14 +108,19 @@ const router = new VueRouter({
             component: require('./pages/LandingPage.vue')
         },
         {
+            path: '/rsvp',
+            name: 'register',
+            component: require('./pages/Register')
+        },
+        {
             path: '/registrations',
             name: 'registrations',
             component: require('./pages/Registrations')
         },
         {
-            path: '/events/create',
-            name: 'events.create',
-            component: require('./pages/Events/Create.vue')
+            path: '/events',
+            name: 'events',
+            component: require('./pages/Events.vue')
         },
     ],
 });

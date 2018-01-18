@@ -1,7 +1,7 @@
 <template>
 
     <div class="image">
-        <img src="/images/logo-white.svg" :width="options.width"/>
+        <img src="/images/svg/logo-white.svg" :width="options ? options.width : '200'"/>
     </div>
 
 </template>

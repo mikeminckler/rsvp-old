@@ -23,8 +23,9 @@
             return {
                 items: [
                     { route: 'home', label: 'Home' },
+                    { route: 'register', label: 'Register' },
                     { route: 'registrations', label: 'Registrations' },
-                    { route: 'events.create', label: 'Create Event' },
+                    { route: 'events', label: 'Event' },
                 ]    
             }
         },

@@ -1,6 +1,6 @@
 <template>
 
-    <div class="landing-page">
+    <div class="vue-page landing-page">
 
         <div class="content-select">
 

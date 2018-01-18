@@ -2,14 +2,6 @@
 
     <div class="registration-form">
 
-        <transition name="fade" appear>
-            <div class="input-container">
-                <div class="logo">
-                    <img src="images/bcs_logo_white.png" class="logo"/>
-                </div>
-            </div>
-        </transition>
-
         <transition name="expander" appear>
             <div class="input-container" v-if="!complete">
                 <div class="center">

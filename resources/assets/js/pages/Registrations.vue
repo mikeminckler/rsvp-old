@@ -1,6 +1,6 @@
 <template>
 
-    <div class="registrations">
+    <div class="vue-page registrations">
 
         <h1>Registrations</h1>
 
