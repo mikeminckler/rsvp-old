@@ -10,6 +10,7 @@ if (token) {
     console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
 
+import velocity from 'velocity-animate'
 
 import Vue from 'vue'
 
@@ -33,6 +34,7 @@ Vue.component('spinner', require('./components/Spinner.vue'));
 
 // CONTENT ITEMS 
 Vue.component('facts', require('./components/Facts.vue'));
+Vue.component('image-block', require('./components/ImageBlock.vue'));
 Vue.component('list', require('./components/List.vue'));
 Vue.component('logo', require('./components/Logo.vue'));
 Vue.component('registration', require('./components/Registration.vue'));

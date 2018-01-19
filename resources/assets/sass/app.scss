@@ -84,6 +84,14 @@ li {
     align-items: center;
 }
 
+.flex-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
 .flexbox {
     display: flex;
     width: 100%;
@@ -333,7 +341,7 @@ div.register {
 
 div.registration-form {
     overflow: hidden;
-    max-width: 350px;
+    width: 350px;
     padding: 15px;
 }
 
@@ -482,7 +490,7 @@ div.grid-cell:last-child {
 
 .fade-enter-active,
 .fade-leave-active {
-    transition: opacity 1s ease-out;
+    transition: opacity 250ms ease-out;
 }
 
 .fade-enter,
@@ -750,7 +758,8 @@ div.background-image {
     /* transform-origin: left center; */
 
     /* transform: perspective( 920px ) rotateY( 15deg ); */
-    animation: rotate-logo 30s linear 0s infinite alternate;
+    animation: rotate-logo 45s linear 0s infinite alternate;
+    transform: perspective( 1920px );
 
     flex: 1;
     display: flex;
@@ -763,10 +772,10 @@ div.background-image {
 
 @keyframes rotate-logo  {
     0% {
-        transform: perspective( 1920px ) rotateY( 0deg ) translate(0px,0px);
+        transform: rotateY( -5deg ) translate(0px,0px);
     }
     100% {
-        transform: perspective( 1920px ) rotateY( 15deg ) translate(-100px, 0px);
+        transform: rotateY( 15deg ) translate(100px, 0px);
     }
 }
 
@@ -843,6 +852,11 @@ div.column {
     grid-column: auto / span 2;
 }
 
+.grid-span-logo-center {
+    grid-column: 3 / span 4;
+    grid-row: 4 / span 2;
+}
+
 .grid-span-3-1 {
     grid-column: auto / span 3;
 }
@@ -850,6 +864,16 @@ div.column {
 .grid-span-2-2 {
     grid-row: auto / span 2;
     grid-column: auto / span 2;
+}
+
+.grid-span-4-2 {
+    grid-column: auto / span 4;
+    grid-row: auto / span 2;
+}
+
+.grid-span-4-4 {
+    grid-column: auto / span 4;
+    grid-row: auto / span 2;
 }
 
 div.component {
@@ -919,14 +943,18 @@ div.column.width-100 {
 
 div.image img {
     max-width: 100%;
+    transition: transform 1s linear;
 }
 
 div.image-block {
     display: grid;
-    grid-template-columns: repeat(auto-fill, 250px);
-    width: 100%;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 150px));
+    grid-template-rows: repeat(auto-fill, minmax(100px, 150px));
+    grid-auto-flow: dense;
     overflow: hidden;
-    max-height: 100vh;
+    flex: 1;
+    justify-content: center;
+    align-content: center;
 }
 
 div.image {
@@ -936,19 +964,84 @@ div.image {
     width: 100%;
     overflow: hidden;
     flex-direction: column;
+    position: relative;
 }
 
 img.rounded {
     border-radius: 100%;
 }
 
-/*
-div.content {
-    min-width: 480px;
-    max-width: 600px;
-    padding: 25px;
+div.image-info {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    background-color: var(--bg-color);
+    padding: 15px;
+    transform: perspective(400px);
 }
-*/
+
+div.info-header {
+    font-size: 20px;
+    font-weight: var(--font-weight-bold);
+}
+
+.image-info-enter-active {
+    animation: image-flip 250ms linear;
+}
+
+.image-info-leave-active {
+    animation: image-flip 250ms reverse;
+}
+
+.image-flip-enter-active {
+    animation: image-flip-leave 250ms reverse;
+}
+
+.image-flip-leave-active {
+    animation: image-flip-leave 250ms linear;
+}
+
+
+@keyframes image-flip-leave {
+    0% {
+        transform: rotateX(0deg);
+        opacity: 1;
+    }
+    50% {
+        transform: rotateX(90deg);
+        opacity: 1;
+    }
+    51% {
+        opacity: 0;
+    }
+    100%   {
+        transform: rotateX(0);
+        opacity: 0;
+    }
+}
+
+@keyframes image-flip {
+    0% {
+        transform: rotateX(90deg);
+        opacity: 0;
+    }
+    50% {
+        transform: rotateX(90deg);
+        opacity: 0;
+    }
+    51% {
+        opacity: 1;
+    }
+    100%   {
+        transform: rotateX(0);
+        opacity: 1;
+    }
+}
 
 
 div.grid-list {
@@ -1044,6 +1137,10 @@ div.large-number {
 
     .flexbox {
         flex-wrap: wrap;
+    }
+
+    .flexbreak {
+        display: block !important;
     }
 
     div.column.width-50 {
