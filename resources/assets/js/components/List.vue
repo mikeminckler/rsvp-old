@@ -2,9 +2,17 @@
 
     <div class="content">
 
-        <h2>Information Session Benifits</h2>
+        <h2>One Hour Will Make a Lifetime of Difference</h2>
+
+        <div class="admissions-team">
+            <img src="/images/admissions.jpg" />
+        </div>
+        <p>We warmly invite you to join our Admissions team at an Information Session near you to discover the opportunities a Brentwood education offers.</p>
+        <p>These sessions allow prospective families to find out if Brentwood is the right fit for your family.</p>
+        <p>Learn why Brentwood is a dynamic and progressive place of learning, where student choice is at the forefront.</p>
 
         <div class="grid-list">
+
             <div class="grid-list-item" v-for="item in items">
                 <div class="grid-list-icon"></div>
                 <div class="grid-list-text">{{ item }}</div>
@@ -26,6 +34,7 @@
         data: function() {
             return {
                 items: [
+                    /*
                     'Get a head a start',
                     'find the right fit',
                     'Ask questions one on one',
@@ -35,6 +44,7 @@
                     'Academic Opportunities',
                     'Financial Aid',
                     'Courses'
+                    */
                 ]
             }
         },

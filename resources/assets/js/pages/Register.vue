@@ -4,12 +4,25 @@
 
         <div class="flexbreak flexbox">
 
-            <div class="flex">
+            <div class="flex flex-top">
                 <registration></registration> 
             </div>
 
+            
+            <div class="flex flex-column">
+                <list></list>
+            </div>
 
-            <div class="flex-2 flex-column">
+        </div>
+
+
+        <div class="divider-headline">
+            Co-educational University Preparatory Boarding School For Grades 9 through 12
+        </div>
+
+        <div>
+
+            <div class="flex flex-column">
                 <image-block></image-block>
             </div>
 
