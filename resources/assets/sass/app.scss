@@ -1,8 +1,8 @@
 :root {
   --font: 'Open Sans', sans-serif;
   --font-numbers: 'Playfair Display', serif;
-  --font-size: 15px;
-  --line-height: 26px;
+  --font-size: 16px;
+  --line-height: 28px;
   --font-weight: 300;
   --font-weight-bold: 600;
   --font-color: #ffffff;
@@ -37,7 +37,8 @@ html, body {
 }
 
 p {
-    margin: 5px 0;
+    padding: 9px;
+    margin: 0;
 }
 
 a {
@@ -269,6 +270,13 @@ input::placeholder {
     color: rgba(255,255,255,0.8);
     text-align: center;
     font-weight: var(--font-weight);
+    font-size: var(--font-size);
+    line-height: 26px;
+    overflow: visible !important;
+}
+
+div[pseudo="placeholder"] {
+    height: 26px;
 }
 
 input[type=checkbox]:checked {
@@ -800,7 +808,7 @@ div.vue-page {
     flex: 1;
     z-index: 5;
     position: relative;
-    max-width: 1800px;
+    max-width: 1400px;
     margin: 0 auto;
     padding: 25px;
 }
@@ -1070,6 +1078,7 @@ div.grid-list {
     grid-template-columns: repeat(2, 1fr);
     padding: 10px;
     grid-gap: 5px;
+    clear: both;
 }
 
 
@@ -1084,13 +1093,17 @@ div.grid-list-icon::before {
 }
 
 div.grid-list-icon svg {
-    padding-right: 5px;
-    font-size: 12px;
-    padding-top: 10px;
+    padding-right: 8px;
+    font-size: 15px;
+    padding-top: 5px;
 }
 
 video {
     width: 101%;
+}
+
+.info-list {
+    max-width: 650px;
 }
 
 div.info-fact {
@@ -1104,7 +1117,6 @@ div.info-fact {
 div.fact-grid {
     margin: 0;
     width: 100%;
-    max-width: 1800px;
     display: grid;
     flex: 1;
     grid-template-columns: repeat(auto-fill, 200px);
@@ -1112,6 +1124,7 @@ div.fact-grid {
     justify-content: center;
     align-content: center;
 }
+
 
 div.admissions-team {
     float: right;

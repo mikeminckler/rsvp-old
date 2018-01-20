@@ -147,8 +147,8 @@
 
         data: function() {
             return {
-                name: 'Jimmy Page',
-                email: 'mike.minckler@brentwood.ca',
+                name: '',
+                email: '',
                 events: [],
                 selectedEvents: [],
                 sending: false,
@@ -234,8 +234,9 @@
             
                 this.complete = true;
                 setTimeout( () => {
-                    this.$store.dispatch('setRegistered', true);
-                }, 4000);
+                    //this.$store.dispatch('setRegistered', true);
+                    window.location.href = 'http://www.brentwood.ca/admissions';
+                }, 5000);
             
             }
 

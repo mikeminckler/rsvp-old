@@ -73,10 +73,10 @@
                     {
                         file: 'logo-white.jpg',
                         hover: false,
-                        infoHeader: 'Brentwood College School',
-                        info: 'Learn why over 250 students from BC choose boarding at Brentwood',
-                        infoLink: 'https://www.brentwood.bc.ca/about-brentwood',
-                        infoLinkText: 'Learn more about Brentwood...',
+                        //infoHeader: 'Brentwood College School',
+                        //info: 'Learn why over 250 students from BC choose boarding at Brentwood',
+                        //infoLink: 'https://www.brentwood.bc.ca/about-brentwood',
+                        //infoLinkText: 'Learn more about Brentwood...',
                         span: 'logo-center'
                     },
                     {
@@ -107,10 +107,10 @@
                     {
                         file: 'lesmis.jpg',
                         hover: false,
-                        infoHeader: 'Musical',
-                        info: 'Learn why over 250 students from BC choose boarding at Brentwood',
-                        infoLink: 'https://www.brentwood.bc.ca/about-brentwood',
-                        infoLinkText: 'Learn more about Brentwood...',
+                        //infoHeader: 'Musical',
+                        //info: 'Learn why over 250 students from BC choose boarding at Brentwood',
+                        //infoLink: 'https://www.brentwood.bc.ca/about-brentwood',
+                        //infoLinkText: 'Learn more about Brentwood...',
                         span: '2-2'
                     },
                     {

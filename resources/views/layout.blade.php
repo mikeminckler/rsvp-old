@@ -26,10 +26,6 @@
 
         <div id="app" class="app">
 
-            <auth user-id="{{ auth()->check() ? auth()->user()->id : '' }}"></auth>
-
-            <page-menu></page-menu>
-
             <router-view></router-view>
 
         </div>

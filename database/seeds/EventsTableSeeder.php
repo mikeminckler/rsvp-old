@@ -32,6 +32,7 @@ class EventsTableSeeder extends Seeder
         $event->save();
 
 
+/*
         $event = new Event;
         $event->title = 'Edmonton';
         $event->date = '2018-02-13 18:30:00';
@@ -48,6 +49,7 @@ class EventsTableSeeder extends Seeder
         $event->host_name = 'Crystal Harvey';
         $event->host_email = 'crystal.harvey@brentwood.bc.ca';
         $event->save();
+*/
 
 
         $event = new Event;
@@ -75,6 +77,17 @@ class EventsTableSeeder extends Seeder
         $event->host_name = 'Crystal Harvey';
         $event->host_email = 'crystal.harvey@brentwood.bc.ca';
         $event->save();
+
+
+        /*
+        $event = new Event;
+        $event->title = 'Victoria';
+        $event->date = '2018-03-06 18:30:00';
+        $event->location = 'Four Points Sheraton';
+        $event->host_name = 'Crystal Harvey';
+        $event->host_email = 'crystal.harvey@brentwood.bc.ca';
+        $event->save();
+         */
 
     }
 }
