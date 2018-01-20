@@ -5,7 +5,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>Brentwood Info Session RSVP</title>
 
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i|Playfair+Display" rel="stylesheet">
         <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
