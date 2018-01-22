@@ -12,7 +12,7 @@ class EventsController extends Controller
 
     public function load()
     {
-        $events = Event::where('date', '>', Carbon::now())->get()->sortBy('date');
+        $events = Event::where('date', '>', Carbon::now())->orderBy('date')->get();
         return response()->json(['events' => $events]);
     }
 
