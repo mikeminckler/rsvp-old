@@ -110,8 +110,8 @@ const router = new VueRouter({
             component: require('./pages/Register')
         },
         {
-            path: '/rsvp',
-            name: 'home',
+            path: '/landing',
+            name: 'landing',
             component: require('./pages/LandingPage.vue')
         },
         {

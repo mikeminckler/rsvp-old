@@ -213,7 +213,9 @@
                         'email': this.email,
                         'events': this.$lodash.map(this.selectedEvents, 'id')
                     }
-                    
+
+                    var ga_title = this.$lodash.map(this.selectedEvents, 'title').join(', ');
+                    ga('send', 'event', 'Registration', 'registered', ga_title);
 
                     this.$http.post('/events/register', post_data).then( response => {
 
