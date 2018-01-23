@@ -6,6 +6,7 @@
   --font-weight: 300;
   --font-weight-bold: 600;
   --font-color: #ffffff;
+  --font-color-white: rgba(0,0,0,1);
   --bg-color: rgb(208,52,58);
   --link-color: #fffcda;
   --border-color: rgba(255,255,255,0.5);
@@ -55,6 +56,7 @@ h1, h2, h3 {
 
 h1 {
     font-size: var(--header-size);
+    border-bottom: 1px solid var(--border-color);
 }
 
 h2 {
@@ -132,7 +134,7 @@ label {
 
 div.logo {
     text-align: center;
-    padding: 10px;
+    padding: 10px 0 0 0;
     width: 100%;
 }
 
@@ -157,7 +159,7 @@ button {
     font-family: var(--font);
     font-size: var(--font-size);
     font-weight: var(--font-weight-bold);
-    color: var(--font-color) !important;
+    color: var(--font-color);
     white-space: nowrap;
     display: inline-block;
     appearance: none;
@@ -168,7 +170,7 @@ button {
     transition: width 500ms ease;
     position: relative;
     text-align: center;
-    height: 30px;
+    height: 32px;
     overflow: hidden;
     line-height: 30px;
     padding: 0 15px;
@@ -353,8 +355,10 @@ div.register {
 
 div.registration-form {
     overflow: hidden;
-    width: 350px;
+    min-width: 350px;
+    max-width: 420px;
     padding: 15px;
+    width: 100%;
 }
 
 div.registration-complete {
@@ -419,6 +423,8 @@ div.progress-slice {
     border-right: 1px solid var(--border-color);
     border-left: 1px solid var(--border-color);
     transition: width 500ms ease-out;
+    position: relative;
+    z-index: 1;
 }
 
 div.progress-slice-bg {
@@ -704,6 +710,8 @@ div.youtube-player {
     overflow: hidden;
     border-top: 1px solid var(--font-color);
     border-bottom: 1px solid var(--font-color);
+    border-right: 1px solid var(--font-color);
+    border-left: 1px solid var(--font-color);
     width: 0px;
     height: 0px;
     display: flex;
@@ -1102,6 +1110,10 @@ video {
     width: 101%;
 }
 
+.home-video {
+    padding: 10px 0 25px 0;
+}
+
 .info-list {
     max-width: 650px;
 }
@@ -1131,6 +1143,17 @@ div.admissions-team {
     width: 40%;
     margin: 10px;
     max-width: 300px;
+}
+
+div.cta {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+button.cta {
+    background-color: var(--font-color);
+    color: var(--bg-color);
 }
 
 div.admissions-team img {
@@ -1171,13 +1194,68 @@ div.large-number {
     line-height: 60px;
 }
 
+div.tag-line {
+    font-size: 14px;   
+    text-align: center;
+}
+
 .percent {
     font-size: 30px;
+}
+
+/* WHITE LAYOUT */
+
+.white {
+    border-radius: var(--border-radius);
+    border: 2px solid var(--border-color);
+    background-color: rgba(255,255,255,0.9);
+    color: var(--font-color-white);
+}
+
+.white h1 {
+    border-bottom: 1px solid var(--font-color-white);
+}
+
+.white input {
+    border-bottom: 1px solid var(--font-color-white);
+    color: var(--font-color-white);
+}
+
+
+.white input::placeholder {
+    color: var(--font-color-white);
+}
+
+.white input[type=checkbox]:checked {
+    background-color: var(--bg-color);
+    border-color: rgba(208,52,58,0.2);
+}
+
+.white input[type=checkbox] {
+    border: 1px solid var(--font-color-white);
+    background-color: rgba(0,0,0,0.1);
+}
+
+.white .progress-steps {
+    color: var(--font-color);
+}
+
+.white div.progress-slice-bg {
+    background-color: rgba(208,52,58,0.5);
+}
+
+.white button {
+    background-color: var(--bg-color);
 }
 
 
 /* SMALL SCREEN */
 
+.small-screen {
+    max-height: 0;
+    overflow: hidden;
+    transition: height 250ms linear;
+}
 
 @media only screen and (max-width: 1200px) {
     div.image-block {
@@ -1190,7 +1268,11 @@ div.large-number {
         flex-direction: column;
     }    
 
-    .flexbox {
+    .small-screen {
+        max-height: 100vh;
+    }
+
+    .flexbox:not(.no-wrap) {
         flex-wrap: wrap;
     }
 

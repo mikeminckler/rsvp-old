@@ -7,6 +7,9 @@
         <div class="info-session-info">
             <div class="admissions-team">
                 <img src="/images/admissions.jpg" />
+                <div class="cta small-screen">
+                    <button class="cta" @click.prevent.stop="scrollTo('registration_form')">Register Now</button>
+                </div>
             </div>
             <p>We warmly invite you to join our Admissions team at an Information Session near you to discover the opportunities a Brentwood education offers.</p>
             <p>These sessions allow prospective families to find out if Brentwood is the right fit for your family.</p>
@@ -29,11 +32,13 @@
 
 <script>
 
+	import Scroller from './Scroller';
+
     export default {
 
         props: [],
 
-        mixins: [],
+        mixins: [Scroller],
 
         data: function() {
             return {
@@ -45,17 +50,6 @@
                     'Over 30 arts and 20 athletic options',
                     'Truly Co-ed 50/50, female/male',
                     '14 AP courses',
-                    /*
-                    'Get a head a start',
-                    'find the right fit',
-                    'Ask questions one on one',
-                    'get to know us',
-                    'Unique Scheduling',
-                    'Univeristy Placement',
-                    'Academic Opportunities',
-                    'Financial Aid',
-                    'Courses'
-                    */
                 ]
             }
         },
@@ -73,7 +67,7 @@
         },
 
         methods: {
-        
+
         }
 
     }

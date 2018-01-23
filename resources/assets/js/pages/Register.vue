@@ -2,15 +2,25 @@
 
     <div class="vue-page">
 
+        <logo></logo>
+
+        <div class="tag-line">
+            Co-ed | Boarding | Grade 9-12 | Vancouver Island
+        </div>
+
+        <div class="home-video flex">
+            <youtube-video video-id="FoG3oi5gCdo"></youtube-video>
+        </div>
+
         <div class="flexbreak flexbox">
 
             <div class="flex flex-top">
-                <registration></registration> 
+                <list></list>
             </div>
 
             
             <div class="flex flex-column">
-                <list></list>
+                <registration></registration> 
             </div>
 
         </div>

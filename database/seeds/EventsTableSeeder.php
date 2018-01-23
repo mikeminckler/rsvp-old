@@ -79,15 +79,23 @@ class EventsTableSeeder extends Seeder
         $event->save();
 
 
-        /*
+
         $event = new Event;
-        $event->title = 'Victoria';
-        $event->date = '2018-03-06 18:30:00';
+        $event->title = 'Langford';
+        $event->date = '2018-03-01 18:30:00';
         $event->location = 'Four Points Sheraton';
         $event->host_name = 'Crystal Harvey';
         $event->host_email = 'crystal.harvey@brentwood.bc.ca';
         $event->save();
-         */
+
+
+        $event = new Event;
+        $event->title = 'White Rock/South Surrey';
+        $event->date = '2018-01-31 18:30:00';
+        $event->location = 'Morgan Creek Golf Course';
+        $event->host_name = 'Crystal Harvey';
+        $event->host_email = 'crystal.harvey@brentwood.bc.ca';
+        $event->save();
 
     }
 }

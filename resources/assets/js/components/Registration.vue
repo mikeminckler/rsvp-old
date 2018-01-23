@@ -1,6 +1,6 @@
 <template>
 
-    <div class="registration-form">
+    <div class="registration-form white" id="registration_form">
 
         <transition name="expander" appear>
             <div class="input-container" v-if="!complete">
@@ -24,7 +24,7 @@
 
                 <transition-group name="list">
 
-                    <div class="flexbox" 
+                    <div class="flexbox no-wrap" 
                         v-for="(event, index) in events"
                         :key="event.id"    
                     >
