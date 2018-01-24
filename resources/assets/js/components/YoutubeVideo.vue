@@ -91,22 +91,24 @@
 
                 this.parentWidth = this.player.getIframe().parentElement.parentElement.clientWidth;
 
-                this.player.getIframe().parentElement.animate([
-                    {
-                        width: '0',
-                        height: '0'
-                    },
-                    {
-                        width: this.playerWidth + 'px',
-                        height: '0'
-                    },
-                    {
-                        width: this.playerWidth + 'px',
-                        height: 'calc((' + this.playerWidth + 'px * 9) / 16)'
-                    }
+                if (this.player.getIframe().parentElement.animate) {
+                    this.player.getIframe().parentElement.animate([
+                        {
+                            width: '0',
+                            height: '0'
+                        },
+                        {
+                            width: this.playerWidth + 'px',
+                            height: '0'
+                        },
+                        {
+                            width: this.playerWidth + 'px',
+                            height: 'calc((' + this.playerWidth + 'px * 9) / 16)'
+                        }
 
-                ], 1000
-                );
+                    ], 1000
+                    );
+                }
 
                 this.resize();
                 this.show = true;
