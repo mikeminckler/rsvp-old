@@ -76,6 +76,7 @@
 
         data: function() {
             return {
+                events: [],
                 title: '',
                 date: '',
                 location: '',

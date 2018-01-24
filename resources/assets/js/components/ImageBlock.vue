@@ -84,6 +84,11 @@
                         hover: false,
                     },
                     {
+                        file: 'baker_rowers.jpg',
+                        hover: false,
+                        span: '2-1',
+                    },
+                    {
                         file: 'seals.jpg',
                         hover: false,
                     },

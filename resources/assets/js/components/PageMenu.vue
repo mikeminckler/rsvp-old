@@ -9,7 +9,6 @@
                 <router-link :to="{ name: item.route }">{{ item.label }}</router-link>
             </div>
 
-
         </div>
     </transition>
 
@@ -22,7 +21,7 @@
         data: function() {
             return {
                 items: [
-                    { route: 'home', label: 'Home' },
+                    { route: 'landing', label: 'Landing' },
                     { route: 'register', label: 'Register' },
                     { route: 'registrations', label: 'Registrations' },
                     { route: 'events', label: 'Event' },

@@ -3,13 +3,14 @@
     <div class="vue-page landing-page">
 
         <div class="content-select">
+            <h2>Learn More About</h2>
 
             <div v-for="content in pageContent"
                 :key="content.id"
                 class="content-select-item"
                 v-if="content.label"
                 >
-                    <button @click="showContent(content)"> {{ content.label }}</button>
+                    <div class="content-select-text" @click="showContent(content)"> {{ content.label }}</div>
             </div>
 
         </div>
@@ -47,12 +48,6 @@
 
                 pageContent: [
                         {
-                            id: 3,
-                            component: 'registration',
-                            initial: true,
-                            span: '1-2',
-                        },
-                        {
                             id: 0,
                             component: 'youtube-video',
                             label: 'Boarding',
@@ -70,26 +65,6 @@
                             options: {
                                 src: '/videos/30sec.webm'
                             }
-                        },
-                        {
-                            id: 2,
-                            component: 'logo',
-                            initial: false,
-                            options: {
-                                width: '400'
-                            }
-                        },
-                        {
-                            id: 4,
-                            component: 'facts',
-                            label: 'Facts',
-                            initial: false
-                        },
-                        {
-                            id: 5,
-                            component: 'list',
-                            label: 'Info Session Benifits',
-                            initial: false,
                         },
                     ]
             }
