@@ -33,7 +33,6 @@
         <div>
 
             <div class="flex flex-column">
-                <image-block></image-block>
             </div>
 
         </div>
