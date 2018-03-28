@@ -52,7 +52,8 @@ const store = new Vuex.Store({
         screen: {
             width: window.innerWidth,
             height: window.innerHeight
-        }
+        },
+        introComplete: false,
     },
 
     mutations: {
@@ -68,6 +69,9 @@ const store = new Vuex.Store({
         },
         setScreenSize (state, screen) {
             state.screen = screen;
+        },
+        setIntroComplete (state, value) {
+            state.introComplete = value;
         }
     
     },
@@ -95,7 +99,13 @@ const store = new Vuex.Store({
         },
         setScreenSize({ commit, state }, screen) {
             commit('setScreenSize', screen);
-        }
+        },
+
+        videoEnded({ commit, state }, videoName) {
+            if (videoName == 'logo') {
+                commit('setIntroComplete', true);
+            }
+        },
     
     }
 

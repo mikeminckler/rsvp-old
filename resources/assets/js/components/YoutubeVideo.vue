@@ -1,7 +1,7 @@
 <template>
 
-    <div class="youtube-player" :class="show ? 'visible' : ''">
-        <div :id="'player_' + id"></div>
+    <div class="youtube-player" :id="'div_player_' + divId" :class="show ? 'visible' : ''">
+        <div :id="'player_' + divId"></div>
     </div>
 
 </template>
@@ -10,13 +10,14 @@
 
     export default {
 
-        props: ['videoId', 'autoplay', 'options'],
+        props: ['videoId', 'autoplay', 'options', 'pause'],
 
         data: function() {
             return {
                 player: {},
                 show: false,
-                parentWidth: 0
+                parentWidth: 0,
+                padding: 10,
             }
         },
 
@@ -27,8 +28,22 @@
             },
 
             screen() {
-                this.resize();
-            }
+                if (this.id) {
+                    this.resize();
+                }
+            },
+
+            id() {
+                this.cueVideo();
+            },
+
+			pause() {
+				if (this.pause) {
+					if (this.$lodash.isFunction(this.player.pauseVideo)) {
+						this.player.pauseVideo();
+					}
+				}
+			}
 
         },
 
@@ -48,12 +63,22 @@
 
             playerWidth() {
                 return this.parentWidth > 360 ? this.parentWidth : 360;
+            },
+
+            divId() {
+                return Math.random().toString(36).slice(2);
             }
 
 
         },
 
         mounted() {
+
+            document.addEventListener("keyup", key => {
+                if (key.keyCode == 27) {
+                    this.$emit('ended');
+                }
+            });
 
             if (this.ready) {
                 this.loadVideo();
@@ -66,30 +91,45 @@
             loadVideo: function() {
 
                 var vue = this;
-           
-                this.player = new YT.Player('player_' + this.id, {
-                    videoId: this.id,
-                    events: {
-                        'onReady': vue.onPlayerReady,
-                        'onStateChange': vue.onPlayerStateChange
-                    },
-                    playerVars: {
-                        showinfo: 0,
-                        controls: 0,
-                        rel: 0,
-                        modestbranding: 1,
-                        iv_load_policy: 3,
-                        fs: 0,
-                        enablejsapi: 1,
-                        disablekb: 1
-                    }
-                });
 
+                if (this.id) {
+
+                    this.player = new YT.Player('player_' + this.divId, {
+                        videoId: this.id,
+                        events: {
+                            'onReady': vue.onPlayerReady,
+                            'onStateChange': vue.onPlayerStateChange
+                        },
+                        playerVars: {
+                            showinfo: 0,
+                            controls: 0,
+                            rel: 0,
+                            modestbranding: 1,
+                            iv_load_policy: 3,
+                            fs: 0,
+                            enablejsapi: 1,
+                            disablekb: 1
+                        }
+                    });
+
+                }
+
+            },
+
+            cueVideo: function() {
+
+                if (this.$lodash.isFunction(this.player.loadVideoById)) {
+                    //this.hide();
+                    this.player.loadVideoById(this.id);
+                } else {
+                    this.loadVideo();
+                }
+            
             },
 
             showPlayer: function() {
 
-                this.parentWidth = this.player.getIframe().parentElement.parentElement.clientWidth;
+                this.setParentWidth();
 
                 if (this.player.getIframe().parentElement.animate) {
                     this.player.getIframe().parentElement.animate([
@@ -141,8 +181,11 @@
             },
 
             onPlayerReady: function() {
+               
+                var div = document.getElementById('div_player_' + this.divId);
+                div.style.opacity = 1;
 
-                this.player.setVolume(20);
+                //this.player.setVolume(20);
                 this.showPlayer();
 
                 if (this.autoplay) {
@@ -156,7 +199,8 @@
 
             resize: function() {
 
-                this.parentWidth = this.player.getIframe().parentElement.parentElement.clientWidth;
+                this.setParentWidth();
+
                 this.player.getIframe().style.width = this.playerWidth + 'px';
                 this.player.getIframe().style.height = 'calc((' + this.playerWidth + 'px * 9) / 16)';
             
@@ -165,10 +209,15 @@
 
             },
 
+            setParentWidth: function() {
+                this.parentWidth = this.player.getIframe().parentElement.parentElement.clientWidth - (this.padding * 2);
+            },
+
             onPlayerStateChange: function(event) {
 
                 if (event.data == YT.PlayerState.ENDED) {
-                    this.hide();
+                    //this.hide();
+					this.$emit('ended');
                 }
 
             },

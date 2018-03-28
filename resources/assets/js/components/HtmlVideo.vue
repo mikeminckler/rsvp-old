@@ -1,40 +1,65 @@
 <template>
 
-    <video>
-        <source :src="options.src" type="video/webm">
+    <video :id="'video_' + options.name">
+        <source :src="'/videos/' + options.name + '.webm'" type="video/webm">
+        <source :src="'/videos/' + options.name + '.mp4'" type="video/mp4">
     </video>
 
 </template>
 
 <script>
 
-    export default {
+export default {
 
-        props: ['options'],
+    props: ['options'],
 
-        mixins: [],
+    mixins: [],
 
-        data: function() {
-            return {
-            }
+    data: function() {
+        return {
+        }
+    },
+
+    watch: {
+    
+    },
+
+    computed: {
+
+        controls() {
+            return this.options.controls ? true : false;
         },
 
-        watch: {
-        
-        },
+        autoplay() {
+            return this.options.autoplay ? true : false;
+        }
+    
+    
+    },
 
-        computed: {
-        
-        },
+    mounted() {
 
-        mounted() {
-        
-        },
+        var video = document.getElementById("video_" + this.options.name);
 
-        methods: {
-        
+        if (this.controls) {
+            video.setAttribute("controls","controls");
         }
 
+        if (this.autoplay) {
+            video.setAttribute("autoplay","autoplay");
+        }
+
+        video.addEventListener('ended', ()=>  {
+            this.$emit('videoEnded', this.options.name);
+            this.$store.dispatch('videoEnded', this.options.name);
+        });
+    
+    },
+
+    methods: {
+    
     }
+
+}
 
 </script>
