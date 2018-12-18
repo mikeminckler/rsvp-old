@@ -20,7 +20,7 @@
 
 	<ul>
 	@foreach ($events as $event)
-		<li>{{ $event->title }} - {{ $event->date->format('D j F g:ia') }} - {{ $event->location }}</li>
+		<li>{{ $event->title }} - {{ $event->date }} - {{ $event->location }}</li>
 	@endforeach
 	</ul>
 

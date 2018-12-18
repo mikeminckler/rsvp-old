@@ -37,7 +37,7 @@
                         </div>
                         <div class="event-info">
                             <label :for="'event_' + event.id">
-                                <span class="bold">{{ event.title }}</span> {{ $moment(event.date).format('ddd MMM D, h:mma') }}<br /> {{ event.location }}
+                                <span class="bold">{{ event.title }}</span> {{ event.date }}<br /> {{ event.location }}
                             </label>
                         </div>
                     </div>

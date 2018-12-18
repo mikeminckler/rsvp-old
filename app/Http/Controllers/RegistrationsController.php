@@ -27,9 +27,9 @@ class RegistrationsController extends Controller
     {
 
         $registrations = Registration::whereHas('event', function($query) {
-            $query->where('date', '>', Carbon::now());
+            $query->where('start_date', '>', Carbon::now());
         })->with('event')->get()->sortBy(function($registration) {
-            return $registration->event->date;
+            return $registration->event->start_date;
         });
 
         return response()->json(['registrations' => $registrations]);
