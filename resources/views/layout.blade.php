@@ -18,15 +18,15 @@
 
     <body>
 
-        <div class="background-container">
-            <div class="background">
-                <div class="background-image">
-                    <img class="background-icon" src="/images/svg/icon-white.svg">
+        <div id="app" class="app">
+
+            <div class="background-container" :class="$store.state.introComplete ? 'visible' : ''">
+                <div class="background">
+                    <div class="background-image">
+                        <img class="background-icon" src="/images/svg/icon-white.svg">
+                    </div>
                 </div>
             </div>
-        </div>
-
-        <div id="app" class="app">
 
             <auth user-id="{{ auth()->check() ? auth()->user()->id : '' }}"></auth>
 

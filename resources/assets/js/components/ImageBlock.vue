@@ -1,39 +1,65 @@
 <template>
 
-    <transition-group name="image" 
-        tag="div" 
-        class="image-block" 
-        appear
-        v-bind:css="false"
-        v-on:before-enter="beforeEnter"
-        v-on:enter="enter"
-        v-on:leave="leave"
-    >
-        <div class="image" 
-            v-for="(image, index) in images"
-            :class="image.span ? 'grid-span-' + image.span : '' "
-            :key="image.file"
-            :data-index="index"
-            @mouseenter="image.hover = true"
-            @mouseleave="image.hover = false"
-        >
+    <div class="">
 
-            <transition name="image-info" v-if="image.info">
-                <div class="image-info" v-if="image.hover">
-                    <div class="info-header">{{ image.infoHeader }}</div>
-                    <div class="info-text">{{ image.info }}</div>
-                    <a :href="image.infoLink" target="_blank">{{ image.infoLinkText }}</a>
+        <transition name="modal" tag="div">
+            <div class="modal-container" v-show="modal" @click="modal = false">
+
+                <div class="modal">
+
+					<youtube-video :video-id="videoId" autoplay="true" :pause="!modal" @ended="modal = false"></youtube-video>
+
                 </div>
-            </transition>
 
-            <transition name="image-flip" v-if="image.info">
-                <img v-if="!image.hover" :src="'/images/' + image.file" class="image">
-            </transition>
-            <img v-else :src="'/images/' + image.file" class="image">
+            </div>
+        </transition>
 
-        </div>
 
-    </transition-group>
+        <transition-group name="image" 
+            tag="div" 
+            class="image-block" 
+            appear
+            v-bind:css="false"
+            v-on:before-enter="beforeEnter"
+            v-on:enter="enter"
+            v-on:leave="leave"
+        >
+            <div class="image" 
+                v-for="(image, index) in images"
+                :class="image.span ? 'grid-span-' + image.span : '' "
+                :key="image.file"
+                :data-index="index"
+                @mouseenter="image.hover = true"
+                @mouseleave="image.hover = false"
+            >
+
+
+                <div class="video-link" v-if="image.infoVideoId">
+                    <div class="video-button" @click="playVideo(image.infoVideoId)">
+                        <div class="video-icon"></div>
+                    </div>
+                </div>
+
+
+                <transition name="image-info" v-if="image.info">
+                    <div class="image-info" v-if="image.hover">
+                        <div class="info-header">{{ image.infoHeader }}</div>
+                        <div class="info-text">{{ image.info }}</div>
+                        <a :href="image.infoLink" target="_blank">{{ image.infoLinkText }}</a>
+                    </div>
+                </transition>
+
+                <transition name="image-flip" v-if="image.info">
+                    <img v-if="!image.hover" :src="'/images/' + image.file" class="image">
+                </transition>
+
+                <img v-else :src="'/images/' + image.file" class="image">
+
+            </div>
+
+        </transition-group>
+
+    </div>
 
 </template>
 
@@ -47,6 +73,8 @@
 
         data: function() {
             return {
+                videoId: '',
+				modal: false,
                 images: [
                     {
                         file: 'waterfront.jpg',
@@ -55,6 +83,7 @@
                     {
                         file: 'teacher.jpg',
                         hover: false,
+                        infoVideoId: 'J_7c_ZA-m0o',
                         span: '2-2'
                     },
                     {
@@ -68,15 +97,13 @@
                     {
                         file: 'students.jpg',
                         hover: false,
+                        infoVideoId: 'l3enBQNb8kM',
                         span: '4-2',
                     },
                     {
                         file: 'logo-white.jpg',
                         hover: false,
-                        //infoHeader: 'Brentwood College School',
-                        //info: 'Learn why over 250 students from BC choose boarding at Brentwood',
-                        //infoLink: 'https://www.brentwood.bc.ca/about-brentwood',
-                        //infoLinkText: 'Learn more about Brentwood...',
+                        infoVideoId: 'Y0jdqYaEYlY',
                         span: 'logo-center'
                     },
                     {
@@ -87,6 +114,7 @@
                         file: 'baker_rowers.jpg',
                         hover: false,
                         span: '2-1',
+                        infoVideoId: 'vCIodvtbwMw',
                     },
                     {
                         file: 'seals.jpg',
@@ -116,6 +144,7 @@
                         //info: 'Learn why over 250 students from BC choose boarding at Brentwood',
                         //infoLink: 'https://www.brentwood.bc.ca/about-brentwood',
                         //infoLinkText: 'Learn more about Brentwood...',
+                        infoVideoId: 'Ls7etcfw2iA',
                         span: '2-2'
                     },
                     {
@@ -133,6 +162,7 @@
                     {
                         file: 'dance.jpg',
                         hover: false,
+                        infoVideoId: 'IdKrlHm9o3U',
                         span: '2-2'
                     },
                     {
@@ -186,7 +216,7 @@
         },
 
         watch: {
-        
+
         },
 
         computed: {
@@ -198,6 +228,11 @@
         },
 
         methods: {
+
+            playVideo: function(vId) {
+                this.videoId = vId;
+				this.modal = true;
+            },
 
             shuffle: function () {
                 this.images = _.shuffle(this.images)
