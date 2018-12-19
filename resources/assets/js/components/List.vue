@@ -2,7 +2,7 @@
 
     <div class="info-list">
 
-        <h2>One Hour Will Make a Lifetime of Difference</h2>
+        <h2>Find out why so many BC families choose Brentwood</h2>
 
         <div class="info-session-info">
             <div class="admissions-team">
@@ -43,13 +43,13 @@
         data: function() {
             return {
                 items: [
-                    'Over $1 Million in student financial aid',
-                    '9 to 1 student to faculty ratio',
-                    '80% of students accepted to their 1st choice university',
+                    'Over $1.5 Million in student financial aid',
+                    '8 to 1 student to faculty ratio',
+                    '86% of students accepted to their 1st choice university',
                     '100% university placement',
                     'Over 30 arts and 20 athletic options',
                     'Truly Co-ed 50/50, female/male',
-                    '14 AP courses',
+                    '20 AP courses',
                 ]
             }
         },

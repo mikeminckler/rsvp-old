@@ -14,9 +14,9 @@
 
     <h1>Brentwood Information Session Sign-Up</h1>
 
-    <p>Hello {{ $name }},</p>
+    <p>Hello {{ $name }},<br/></p>
 
-    <p>You have registered for the following information events</p>
+    <p>Thank you for your interest in Brentwood! You have registered for the following information events</p>
 
 	<ul>
 	@foreach ($events as $event)
@@ -24,9 +24,11 @@
 	@endforeach
 	</ul>
 
-    <p>A member of our admissions team will be following up with you closer to the event. <br/>Should you have any questions feel free to contact us at admissions@brentwood.bc.ca</p>
+    <p>A member of our admissions team will be following up with you closer to the event. In the meantime, should you have any questions feel free to contact us at admissions@brentwood.bc.ca</p>
 
-    <p>Brentwood Admissions<br/>(250) 743-5521<br/>www.brentwood.bc.ca</p>
+    <p>All the best,</p>
+
+    <p>Your Brentwood Admissions Team<br/>(250) 743-5521<br/>www.brentwood.bc.ca</p>
 
 
 </div>
