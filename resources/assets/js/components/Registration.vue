@@ -37,7 +37,7 @@
                         </div>
                         <div class="event-info">
                             <label :for="'event_' + event.id">
-                                <span class="bold">{{ event.title }} {{ event.date }}</span><br /> {{ event.location }}
+                                <span class="bold">{{ event.title }}<br/> {{ event.date }}</span><br /> {{ event.location }}
                             </label>
                         </div>
                     </div>

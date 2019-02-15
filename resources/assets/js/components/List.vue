@@ -44,7 +44,7 @@
             return {
                 items: [
                     'Over $1.5 Million in student financial aid',
-                    '8 to 1 student to faculty ratio',
+                    '8 to 1 student to advisor ratio',
                     '86% of students accepted to their 1st choice university',
                     '100% university placement',
                     'Over 30 arts and 20 athletic options',

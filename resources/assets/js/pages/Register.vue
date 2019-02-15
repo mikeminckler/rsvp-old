@@ -9,7 +9,7 @@
         </div>
 
         <div class="home-video flex">
-            <youtube-video video-id="FoG3oi5gCdo"></youtube-video>
+            <youtube-video video-id="ra21_KEUcxQ"></youtube-video>
         </div>
 
         <div class="flexbreak flexbox">
