@@ -26,6 +26,12 @@
 
         </div>
 
+        <div class="contact center">
+            <div class="cta"><a href="https://www.brentwood.bc.ca/admissions" target="_blank">Learn more about Brentwood College School</a></div>
+            <div>or</div>
+            <div class="cta"><a href="mailto:admissions@brentwood.bc.ca" target="_blank">Send us an email with your questions</a></div>
+        </div>
+
     </div>
 
 </template>

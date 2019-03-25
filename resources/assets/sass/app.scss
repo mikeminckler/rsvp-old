@@ -61,11 +61,10 @@ h1 {
 
 h2 {
     font-size: calc( var(--header-size) - 4px);
-    background-color: var(--font-color);
-    color: var(--bg-color);
     font-weight: var(--font-weight-bold);
     text-align: center;
     width: 100%;
+    border-bottom: 1px solid var(--border-color);
 }
 
 li {
@@ -1199,6 +1198,7 @@ video {
 
 .home-video {
     padding: 10px 0 25px 0;
+    max-height: 750px;
 }
 
 .info-list {
@@ -1236,6 +1236,14 @@ div.cta {
     display: flex;
     justify-content: center;
     align-items: center;
+
+    & a {
+        background-color: var(--font-color);
+        color: var(--bg-color);
+        border-radius: 5px;
+        padding: 0 10px;
+        box-shadow: 0 0 5px rgba(100,0,20,0.5);
+    }
 }
 
 button.cta {

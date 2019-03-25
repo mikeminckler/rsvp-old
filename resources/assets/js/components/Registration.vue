@@ -216,6 +216,7 @@
 
                     var ga_title = this.$lodash.map(this.selectedEvents, 'title').join(', ');
                     ga('send', 'event', 'Registration', 'registered', ga_title);
+                    fbq('track', 'CompleteRegistration');
 
                     this.$http.post('/events/register', post_data).then( response => {
 

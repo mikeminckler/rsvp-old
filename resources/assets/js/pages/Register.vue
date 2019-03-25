@@ -2,11 +2,6 @@
 
     <div class="vue-page">
 
-        <logo></logo>
-
-        <div class="tag-line">
-            Co-ed | Boarding | Grade 9-12 | Vancouver Island
-        </div>
 
         <div class="home-video flex">
             <youtube-video video-id="ra21_KEUcxQ"></youtube-video>
@@ -28,6 +23,10 @@
 
         <div class="divider-headline">
             Co-educational University Preparatory Boarding School For Grades 9 through 12
+        </div>
+
+        <div class="tag-line">
+            Co-ed | Boarding | Grade 9-12 | Vancouver Island
         </div>
 
         <div>
