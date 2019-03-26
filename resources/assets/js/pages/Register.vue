@@ -14,7 +14,7 @@
             </div>
 
             
-            <div class="flex flex-column">
+            <div class="flex flex-column registration-container">
                 <registration></registration> 
             </div>
 

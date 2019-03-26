@@ -5,11 +5,12 @@
   --line-height: 28px;
   --font-weight: 300;
   --font-weight-bold: 600;
-  --font-color: #ffffff;
-  --font-color-white: rgba(0,0,0,1);
-  --bg-color: rgb(208,52,58);
-  --link-color: #fffcda;
-  --border-color: rgba(255,255,255,0.5);
+  --font-color: #222222;
+  --font-color-white: rgba(25,25,25,1);
+  --bg-color: rgb(255,255,255);
+  --link-color: rgb(208,52,58);
+  --button-text-color: rgb(255,255,255);
+  --border-color: rgba(55,55,55,0.5);
   --border-radius: 5px;
   --progress-height: 24px; /* this should be a even number */
   --header-size: 22px;
@@ -23,7 +24,7 @@ body {
     line-height: var(--line-height);
     background-color: var(--bg-color);
     color: var(--font-color);
-    background-image: linear-gradient(90deg, #d0343a, rgba(166,42,46,1));
+    /* background-image: linear-gradient(90deg, #d0343a, rgba(166,42,46,1)); */
 /*    background: var(--bg-color) url('/images/red_bg.png') no-repeat right bottom; */
 }
 
@@ -154,12 +155,12 @@ div.footer {
 
 button {
     background-color: rgba(255,255,255,0.1);
-    border: 1px solid var(--border-color);
     padding: 0px;
+    border: 0;
     font-family: var(--font);
     font-size: var(--font-size);
     font-weight: var(--font-weight-bold);
-    color: var(--font-color);
+    color: var(--button-text-color);
     white-space: nowrap;
     display: inline-block;
     appearance: none;
@@ -190,6 +191,7 @@ div.button-text {
     top: 0px;
     width: 100%;
     font-size: calc( var(--font-size) - 1px);
+    color: var(--button-text-color);
 }
 
 div.button-text-submit::after {
@@ -207,11 +209,6 @@ div.button-text-saving {
     display: flex;
     justify-content: center;
 	align-items: center;
-}
-
-svg path,
-svg rect{
-  fill: var(--font-color);
 }
 
 div.spinner {
@@ -349,6 +346,10 @@ div.event-info {
     font-size: calc( var(--font-size) - 1px );
     line-height: calc( var(--font-size) + 3px);
     padding-bottom: 10px;
+}
+
+div.registration-container {
+    justify-content: flex-start;
 }
 
 div.register {
@@ -1024,22 +1025,18 @@ div.column.width-100 {
     background-color: rgba(191,48,53,1);
 }
 
-.white {
-    background-color: rgba(255,255,255,0.1);
-}
-
 .divider-headline {
-    background-image: linear-gradient( to right, rgba(208,52,58,0), rgba(208,52,58,1), rgba(208,52,58,0) );
     font-size: var(--header-size);
     font-weight: var(--font-weight-bold);
     text-align: center;
     width: 100%;
     padding: 25px;
     margin: 25px;
-    border-style: solid;
-    border-width: 1px;
-    border-image: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 50%, rgba(255,255,255,0) 100% );
-    border-image-slice: 1;
+    /* border-style: solid; */
+    /* border-width: 1px; */
+    /* background-image: linear-gradient( to right, rgba(208,52,58,0), rgba(208,52,58,1), rgba(208,52,58,0) ); */
+    /* border-image: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 50%, rgba(255,255,255,0) 100% ); */
+    /* border-image-slice: 1; */
 }
 
 div.image img {
@@ -1238,11 +1235,11 @@ div.cta {
     align-items: center;
 
     & a {
-        background-color: var(--font-color);
+        background-color: var(--link-color);
         color: var(--bg-color);
         border-radius: 5px;
         padding: 0 10px;
-        box-shadow: 0 0 5px rgba(100,0,20,0.5);
+        line-height: 32px;
     }
 }
 
@@ -1306,8 +1303,8 @@ div.tag-line {
 .white {
     border-radius: var(--border-radius);
     border: 2px solid var(--border-color);
-    background-color: rgba(255,255,255,0.9);
     color: var(--font-color-white);
+    background-color: rgba(205,205,205,0.1);
 }
 
 .white h1 {
@@ -1325,7 +1322,7 @@ div.tag-line {
 }
 
 .white input[type=checkbox]:checked {
-    background-color: var(--bg-color);
+    background-color: var(--link-color);
     border-color: rgba(208,52,58,0.2);
 }
 
@@ -1335,7 +1332,7 @@ div.tag-line {
 }
 
 .white .progress-steps {
-    color: var(--font-color);
+    color: rgb(255,255,255);
 }
 
 .white div.progress-slice-bg {
@@ -1343,7 +1340,8 @@ div.tag-line {
 }
 
 .white button {
-    background-color: var(--bg-color);
+    background-color: var(--link-color);
+    color: var(--button-text-color);
 }
 
 

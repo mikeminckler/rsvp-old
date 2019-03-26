@@ -1,13 +1,15 @@
 
-window.axios = require('axios');
-window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+import axios from "axios";
+Object.defineProperty(Vue.prototype, "$http", { value: axios });
 
+axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
 let token = document.head.querySelector('meta[name="csrf-token"]');
-
 if (token) {
-    window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
+    axios.defaults.headers.common["X-CSRF-TOKEN"] = token.content;
 } else {
-    console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
+    console.error(
+        "CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token"
+    );
 }
 
 import velocity from 'velocity-animate'
@@ -17,29 +19,37 @@ import Vue from 'vue'
 import lodash from 'lodash';
 Object.defineProperty(Vue.prototype, '$lodash', { value: lodash });
 
-
 import moment from 'moment';
 Object.defineProperty(Vue.prototype, '$moment', { value: moment });
 
 import Vuex from 'vuex'
 Vue.use(Vuex);
-Vue.prototype.$http = axios;
 
 import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
-Vue.component('auth', require('./components/Auth.vue'));
-Vue.component('page-menu', require('./components/PageMenu.vue'));
-Vue.component('spinner', require('./components/Spinner.vue'));
+import Auth from './components/Auth.vue';
+Vue.component('auth', Auth);
+import PageMenu from './components/PageMenu.vue';
+Vue.component('page-menu', PageMenu);
+import Spinner from './components/Spinner.vue';
+Vue.component('spinner', Spinner);
 
 // CONTENT ITEMS 
-Vue.component('facts', require('./components/Facts.vue'));
-Vue.component('image-block', require('./components/ImageBlock.vue'));
-Vue.component('list', require('./components/List.vue'));
-Vue.component('logo', require('./components/Logo.vue'));
-Vue.component('registration', require('./components/Registration.vue'));
-Vue.component('youtube-video', require('./components/YoutubeVideo.vue'));
-Vue.component('html-video', require('./components/HtmlVideo.vue'));
+import Facts from './components/Facts.vue';
+Vue.component('facts', Facts);
+import ImageBlock from './components/ImageBlock.vue';
+Vue.component('image-block', ImageBlock);
+import List from './components/List.vue';
+Vue.component('list', List);
+import Logo from './components/Logo.vue';
+Vue.component('logo', Logo);
+import Registration from './components/Registration.vue';
+Vue.component('registration', Registration);
+import YoutubeVideo from './components/YoutubeVideo.vue';
+Vue.component('youtube-video', YoutubeVideo);
+import HtmlVideo from './components/HtmlVideo.vue';
+Vue.component('html-video', HtmlVideo);
 
 const store = new Vuex.Store({
 
@@ -111,33 +121,39 @@ const store = new Vuex.Store({
 
 });
 
+import Register from './pages/Register.vue';
+import Login from './pages/Login.vue';
+import LandingPage from './pages/LandingPage.vue';
+import Registrations from './pages/Registrations.vue';
+import Events from './pages/Events.vue';
+
 const router = new VueRouter({
     mode: 'history',
     routes: [
         {
             path: '/',
             name: 'register',
-            component: require('./pages/Register')
+            component: Register,
         },
         {
             path: '/login',
             name: 'login',
-            component: require('./pages/Login')
+            component: Login,
         },
         {
             path: '/landing',
             name: 'landing',
-            component: require('./pages/LandingPage.vue')
+            component: LandingPage,
         },
         {
             path: '/registrations',
             name: 'registrations',
-            component: require('./pages/Registrations')
+            component: Registrations,
         },
         {
             path: '/events',
             name: 'events',
-            component: require('./pages/Events.vue')
+            component: Events,
         },
     ],
 });
