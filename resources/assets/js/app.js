@@ -185,13 +185,14 @@ const app = new Vue({
 
     methods: {
 
-        screenResize: _.debounce(
-            function(event) {
-                let screen = {
-                    width: event.currentTarget.innerWidth,
-                    height: event.currentTarget.innerHeight,
+        screenResize: _.debounce( function(event) {
+                if (event.currentTarget) {
+                    let screen = {
+                        width: event.currentTarget.innerWidth,
+                        height: event.currentTarget.innerHeight,
+                    }
+                    app.$store.dispatch('setScreenSize', screen);
                 }
-                app.$store.dispatch('setScreenSize', screen);
             }, 100
         ),
 

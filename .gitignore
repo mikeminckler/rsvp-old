@@ -17,3 +17,8 @@ composer.lock
 /public/build/
 /public/mix-manifest.json
 package-lock.json
+tags
+tags.lock
+tags.temp
+tags.temp.tmp
+.gutctags
