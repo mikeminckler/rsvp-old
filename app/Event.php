@@ -64,11 +64,15 @@ class Event extends Model
 
     public function getDateAttribute()
     {
-        $date = $this->start_date->format('D M j, \'y g:ia');
-        if ($this->end_date) {
-            $date .= '-'.$this->end_date->format('g:ia');
+        if ($this->all_day) {
+            $date = $this->start_date->format('D M j, \'y');
         } else {
-            $date .= '-'.$this->start_date->addMinutes(90)->format('g:ia');
+            $date = $this->start_date->format('D M j, \'y g:ia');
+            if ($this->end_date) {
+                $date .= '-'.$this->end_date->format('g:ia');
+            } else {
+                $date .= '-'.$this->start_date->addMinutes(90)->format('g:ia');
+            }
         }
         return $date;
     }

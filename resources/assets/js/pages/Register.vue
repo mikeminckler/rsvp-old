@@ -3,11 +3,7 @@
     <div class="vue-page">
 
 
-        <div class="home-video flex">
-            <youtube-video video-id="ra21_KEUcxQ"></youtube-video>
-        </div>
-
-        <div class="flexbreak flexbox">
+        <div class="flexbreak flexbox" style="margin-bottom: 16px;">
 
             <div class="flex flex-top">
                 <list></list>
@@ -18,6 +14,10 @@
                 <registration></registration> 
             </div>
 
+        </div>
+
+        <div class="home-video flex">
+            <youtube-video video-id="1tW0Zj3YoJ4"></youtube-video>
         </div>
 
 

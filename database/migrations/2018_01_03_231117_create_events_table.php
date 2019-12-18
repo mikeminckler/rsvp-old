@@ -21,6 +21,7 @@ class CreateEventsTable extends Migration
             $table->string('location');
             $table->string('host_name');
             $table->string('host_email');
+            $table->boolean('all_day')->default(false);
             $table->timestamps();
         });
     }
