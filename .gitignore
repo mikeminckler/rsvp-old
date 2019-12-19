@@ -22,3 +22,4 @@ tags.lock
 tags.temp
 tags.temp.tmp
 .gutctags
+/public/vendor/horizon/

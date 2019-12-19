@@ -9,6 +9,7 @@
         "eluceo/ical": "^0.15.1",
         "fideloper/proxy": "^4.2",
         "laravel/framework": "6.*",
+        "laravel/horizon": "^3.4",
         "laravel/tinker": "^2.0"
     },
     "require-dev": {
