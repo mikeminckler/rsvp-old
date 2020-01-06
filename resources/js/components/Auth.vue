@@ -1,7 +1,7 @@
 <template>
 
     <div class="auth">
-        <div class="logout" v-if="auth" @click.prevent.stop="logout">Logout</div>
+        <div class="link logout px-4" v-if="auth" @click.prevent.stop="logout">Logout</div>
     </div>
 
 </template>
@@ -42,7 +42,7 @@
 
             loadUser: function() {
             
-                this.$http.post('/users/load', {'user_id': this.userId}).then( response => {
+                this.$http.get('/users/load', {'user_id': this.userId}).then( response => {
                     this.$store.dispatch('setUser', response.data.user);
                 }, error => {
                 
@@ -54,7 +54,7 @@
 
                 this.$http.post('/logout').then( response => {
                     this.$store.dispatch('setUser', {});
-                    this.$router.push({ name: 'login' });
+                    this.$router.push({ name: 'events' });
                     location.reload();
                 }, error => {
                 

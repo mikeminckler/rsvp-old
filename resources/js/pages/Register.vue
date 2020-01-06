@@ -5,18 +5,18 @@
 
         <div class="flexbreak flexbox" style="margin-bottom: 16px;">
 
-            <div class="flex flex-top">
+            <div class="flex-1 flex-top">
                 <list></list>
             </div>
 
             
-            <div class="flex flex-column registration-container">
+            <div class="flex-1 flex-column registration-container">
                 <registration></registration> 
             </div>
 
         </div>
 
-        <div class="home-video flex">
+        <div class="home-video flex-1 w-full">
             <youtube-video video-id="1tW0Zj3YoJ4"></youtube-video>
         </div>
 

@@ -52,7 +52,7 @@
         <transition name="name-email">
             <div class="input-container" v-if="selectedEvents.length && !complete">
                 <div class="input-block input-name">
-                    <input type="text" v-model="name" placeholder="Name" class="center" />
+                    <input type="text" v-model="name" placeholder="Name" class="center white" />
                 </div>
             </div>
         </transition>
@@ -60,7 +60,7 @@
         <transition name="name-email">
             <div class="input-container" v-if="selectedEvents.length && !complete">
                 <div class="input-block input-email">
-                    <input type="text" v-model="email" placeholder="Email" class="center" />
+                    <input type="text" v-model="email" placeholder="Email" class="center white" />
                 </div>
             </div>
         </transition>
@@ -195,7 +195,7 @@
         methods: {
         
             loadEvents: function() {
-                this.$http.post('/events/load').then( response => {
+                this.$http.get('/events/load').then( response => {
                     this.events = response.data.events;
                 }, error => {
                 

@@ -1,16 +1,14 @@
 <template>
 
-    <transition name="fade">
-        <div class="page-menu" v-if="$store.state.user.id">
+    <div class="page-menu" v-if="$store.state.user.id">
 
-            <div class="menu-item"
-                v-for="item in items"    
-            >
-                <router-link :to="{ name: item.route }">{{ item.label }}</router-link>
-            </div>
-
+        <div class="menu-item"
+            v-for="item in items"    
+        >
+            <router-link class="menu-link" :to="{ name: item.route }">{{ item.label }}</router-link>
         </div>
-    </transition>
+
+    </div>
 
 </template>
 
@@ -22,9 +20,9 @@
             return {
                 items: [
                     { route: 'landing', label: 'Landing' },
-                    { route: 'register', label: 'Register' },
+                    { route: 'register', label: 'Registration Page' },
                     { route: 'registrations', label: 'Registrations' },
-                    { route: 'events', label: 'Event' },
+                    { route: 'events', label: 'Events' },
                 ]    
             }
         },

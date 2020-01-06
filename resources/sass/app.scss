@@ -1,3 +1,7 @@
+@tailwind base;
+
+@tailwind components;
+
 :root {
   --font: 'Open Sans', sans-serif;
   --font-numbers: 'Playfair Display', serif;
@@ -43,10 +47,11 @@ p {
     margin: 0;
 }
 
-a {
+a, .link {
     text-decoration: none;
     color: var(--link-color);
     font-weight: var(--font-weight-bold);
+    cursor: pointer;
 }
 
 h1, h2, h3 {
@@ -104,6 +109,7 @@ li {
     width: 100%;
 }
 
+/*
 .flex {
     flex: 1;
     justify-content: center;
@@ -113,6 +119,7 @@ li {
     width: 100%;
     transition: height 1s ease, flex 1s ease;
 }
+*/
 
 .flex-2 {
     flex: 2;
@@ -248,23 +255,24 @@ div.button-text-leave-active {
 input {
     font-family: var(--font);
     width: 100%;
-    background-color: transparent;
     appearance: none;
-    border: 0;
-    border-bottom: 1px solid #ffffff;
     outline: none;
     color: var(--font-color);
-    padding: 5px;
     font-size: var(--font-size);
     font-weight: var(--font-weight-bold);
-    border-radius: 0;
+
+    @apply border-gray-200 bg-yellow-200 border-solid border-2 px-1;
+}
+
+input.white {
+    @apply bg-transparent border-0 rounded-none;
 }
 
 *:focus {
     outline: none;
 }
 
-input::placeholder {
+input.white::placeholder {
     font-style: italic;
     color: rgba(255,255,255,0.8);
     text-align: center;
@@ -279,7 +287,7 @@ div[pseudo="placeholder"] {
 }
 
 input[type=checkbox]:checked {
-    background-color: rgba(255,255,255,1);
+    background-color: var(--link-color);
     border-color: var(--link-color);
 }
 
@@ -313,14 +321,9 @@ input[type=checkbox] {
 .login-container {
     display: grid;
     height: 100vh;
-    grid-template-columns: minmax(200px, 300px);
+    grid-template-columns: minmax(200px, 400px);
     justify-content: center;
     align-content: center;
-
-    & input {
-        background-color: rgb(255,251,214);
-    }
-
 }
 
 div.input-container {
@@ -473,11 +476,54 @@ div.page-menu {
 }
 
 div.menu-item {
+    @apply px-8;
+}
+
+a.menu-link {
     padding: 5px;
 }
 
-a.menu-item {
-    padding: 5px;
+
+/* EVENTS LIST */
+
+div.grid-events {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.ignore {
+    display: contents;
+
+    > div {
+        @apply bg-gray-100;
+    }
+
+}
+
+.ignore:nth-child(even) {
+    > div {
+        @apply bg-gray-300;
+    }
+}
+
+.ignore:first-child {
+    > div:first-child {
+        @apply rounded-tl;
+    }
+
+    > div:last-child {
+        @apply rounded-tr;
+    }
+}
+
+.ignore:last-child {
+    > div:first-child {
+        @apply rounded-bl;
+    }
+
+    > div:last-child {
+        @apply rounded-br;
+    }
 }
 
 
@@ -1411,3 +1457,5 @@ div.tag-line {
         grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
     }
 }
+
+@tailwind utilities;

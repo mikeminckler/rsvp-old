@@ -63,7 +63,7 @@
         methods: {
 
             loadRegistrations: function() {
-                this.$http.post('/registrations/load').then( response => {
+                this.$http.get('/registrations/load').then( response => {
                     this.registrations = response.data.registrations;
                 }, error => {
                 

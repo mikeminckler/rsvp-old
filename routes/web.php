@@ -18,16 +18,17 @@ Auth::routes();
 
 Route::group(['middleware' => 'auth'], function () {
 
-    Route::post('/users/load', 'UsersController@load')->name('users.load');
+    Route::get('/users/load', 'UsersController@load')->name('users.load');
 
-    Route::post('/registrations/load', 'RegistrationsController@load')->name('registrations.load');
+    Route::get('/registrations/load', 'RegistrationsController@load')->name('registrations.load');
 
-    //Route::get('/events/create', 'EventsController@create')->name('events.create');
     Route::post('/events/create', 'EventsController@create')->name('events.create');
+    Route::get('/events/{id}', 'EventsController@edit')->name('events.edit')->where('id', '\d+');
+    Route::post('/events/{id}', 'EventsController@update')->name('events.update')->where('id', '\d+');
 
 });
 
-Route::post('/events/load', 'EventsController@load')->name('events.load');
+Route::get('/events/load', 'EventsController@load')->name('events.load');
 Route::post('/events/register', 'RegistrationsController@register')->name('events.register');
 
 Route::get('{catchall}', 'PagesController@home')->name('home')->where('catchall', '(.*)');

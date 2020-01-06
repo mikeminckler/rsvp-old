@@ -47,15 +47,21 @@ class Event extends Model
 	}
 
 
-    public static function createEvent()
+    public static function saveEvent($id = null)
     {
-        $event = new Event;
+        if ($id) {
+            $event = Event::findOrFail($id);
+        } else {
+            $event = new Event;
+        }
+
         $event->title = request()->input('title');
         $event->start_date = Carbon::parse(request()->input('start_date'));
         $event->end_date = request()->input('end_date') ? Carbon::parse(request()->input('end_date')) : null;
         $event->location = request()->input('location');
         $event->host_name = request()->input('host_name');
         $event->host_email = request()->input('host_email');
+        $event->all_day = request()->input('all_day') ? true : false;
         $event->save();
 
         return $event;
