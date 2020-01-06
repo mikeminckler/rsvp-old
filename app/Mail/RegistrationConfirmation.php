@@ -38,7 +38,7 @@ class RegistrationConfirmation extends Mailable implements ShouldQueue
     public function build()
     {
         $email = $this->view('mail.registration-confirmation')
-            ->from('welcome@brentwood.bc.ca', 'Brentwood Admissions')
+            //->from('welcome@brentwood.bc.ca', 'Brentwood Admissions')
             ->subject('Confirmation - Brentwood Information Session')
             ->replyTo('admissions@brentwood.bc.ca', 'Brentwood Admissions');
 
